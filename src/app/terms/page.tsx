@@ -98,9 +98,9 @@ export default function TermsPage() {
               
               {/* Introduction */}
               <div className="mb-12 p-6 bg-primary/5 border border-primary/20 rounded-xl">
-                <h2 className="text-xl font-semibold text-foreground mb-3">Welcome to Nextly</h2>
+                <h2 className="text-xl font-semibold text-foreground mb-3">Welcome to Minder</h2>
                 <p className="text-muted-foreground leading-relaxed">
-                  These Terms of Service ("Terms") govern your use of Nextly, an AI-powered platform for generating Next.js applications. 
+                  These Terms of Service ("Terms") govern your use of Minder, an AI-powered platform for generating Next.js applications. 
                   By accessing or using our service, you agree to be bound by these Terms.
                 </p>
               </div>
@@ -112,12 +112,12 @@ export default function TermsPage() {
                 </h2>
                 <div className="space-y-4 text-muted-foreground leading-relaxed">
                   <p>
-                    By creating an account, accessing, or using Nextly's services, you acknowledge that you have read, 
+                    By creating an account, accessing, or using Minder's services, you acknowledge that you have read, 
                     understood, and agree to be bound by these Terms of Service and our Privacy Policy. If you do not 
                     agree to these terms, you may not use our services.
                   </p>
                   <p>
-                    These Terms constitute a legally binding agreement between you ("User" or "you") and Nextly 
+                    These Terms constitute a legally binding agreement between you ("User" or "you") and Minder 
                     ("we," "us," or "our"). Your use of the service indicates your acceptance of these Terms, 
                     regardless of whether you have created an account.
                   </p>
@@ -136,7 +136,7 @@ export default function TermsPage() {
                 </h2>
                 <div className="space-y-4 text-muted-foreground leading-relaxed">
                   <p>
-                    Nextly is an artificial intelligence-powered platform that enables users to generate Next.js 
+                    Minder is an artificial intelligence-powered platform that enables users to generate Next.js 
                     applications through natural language prompts. Our service provides:
                   </p>
                   <ul className="list-disc pl-6 space-y-2">
@@ -166,7 +166,7 @@ export default function TermsPage() {
                 </h2>
                 <div className="space-y-4 text-muted-foreground leading-relaxed">
                   <p>
-                    To access certain features of Nextly, you must create an account. During registration, you agree to:
+                    To access certain features of Minder, you must create an account. During registration, you agree to:
                   </p>
                   <ul className="list-disc pl-6 space-y-2">
                     <li>Provide accurate, current, and complete information</li>
@@ -194,7 +194,7 @@ export default function TermsPage() {
                 </h2>
                 <div className="space-y-4 text-muted-foreground leading-relaxed">
                   <p>
-                    You agree to use Nextly only for lawful purposes and in accordance with these Terms. 
+                    You agree to use Minder only for lawful purposes and in accordance with these Terms. 
                     Prohibited uses include, but are not limited to:
                   </p>
                   <div className="bg-red-50 dark:bg-red-950/20 border border-red-200 dark:border-red-800 p-4 rounded-xl">
@@ -224,7 +224,7 @@ export default function TermsPage() {
                 </h2>
                 <div className="space-y-4 text-muted-foreground leading-relaxed">
                   <p>
-                    Nextly's AI service generates code based on your prompts and requirements. Important considerations 
+                  Minder's AI service generates code based on your prompts and requirements. Important considerations 
                     regarding AI-generated content:
                   </p>
                   <div className="bg-amber-50 dark:bg-amber-950/20 border border-amber-200 dark:border-amber-800 p-4 rounded-xl">
@@ -256,12 +256,12 @@ export default function TermsPage() {
                 </h2>
                 <div className="space-y-4 text-muted-foreground leading-relaxed">
                   <p>
-                    The Nextly platform, including its AI models, algorithms, user interface, and underlying 
+                    The Minder platform, including its AI models, algorithms, user interface, and underlying 
                     technology, is protected by intellectual property laws and remains our exclusive property.
                   </p>
                   <h4 className="font-semibold text-foreground">Our Rights:</h4>
                   <ul className="list-disc pl-6 space-y-2">
-                    <li>All rights in the Nextly platform and technology</li>
+                    <li>All rights in the Minder platform and technology</li>
                     <li>Trademarks, logos, and brand elements</li>
                     <li>Proprietary AI models and training methodologies</li>
                     <li>Platform design and user experience elements</li>
@@ -287,13 +287,13 @@ export default function TermsPage() {
                 </h2>
                 <div className="space-y-4 text-muted-foreground leading-relaxed">
                   <p>
-                    You retain ownership of all original content, prompts, and data you provide to Nextly. 
+                    You retain ownership of all original content, prompts, and data you provide to Minder. 
                     However, you grant us certain rights to provide and improve our services:
                   </p>
                   <div className="bg-blue-50 dark:bg-blue-950/20 border border-blue-200 dark:border-blue-800 p-4 rounded-xl">
                     <h4 className="font-semibold text-blue-700 dark:text-blue-400 mb-2">License Grant:</h4>
                     <p className="text-blue-600 dark:text-blue-300">
-                      You grant Nextly a worldwide, non-exclusive, royalty-free license to use, process, 
+                      You grant Minder a worldwide, non-exclusive, royalty-free license to use, process, 
                       and analyze your content solely for the purpose of providing services, improving our AI models, 
                       and developing new features.
                     </p>
@@ -345,7 +345,7 @@ export default function TermsPage() {
                 </h2>
                 <div className="space-y-4 text-muted-foreground leading-relaxed">
                   <p>
-                    Nextly offers both free and premium subscription tiers. Premium features require a paid subscription 
+                   Minder offers both free and premium subscription tiers. Premium features require a paid subscription 
                     with the following terms:
                   </p>
                   <h4 className="font-semibold text-foreground">Billing Terms:</h4>
@@ -442,7 +442,7 @@ export default function TermsPage() {
                   <div className="bg-red-50 dark:bg-red-950/20 border border-red-200 dark:border-red-800 p-4 rounded-xl">
                     <p className="font-semibold text-red-700 dark:text-red-400 mb-2">LIABILITY LIMITATION:</p>
                     <p className="text-red-600 dark:text-red-300 text-sm">
-                      IN NO EVENT SHALL NEXTLY BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, 
+                      IN NO EVENT SHALL MINDER BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, 
                       OR PUNITIVE DAMAGES, INCLUDING WITHOUT LIMITATION, LOSS OF PROFITS, DATA, USE, GOODWILL, 
                       OR OTHER INTANGIBLE LOSSES.
                     </p>
@@ -472,7 +472,7 @@ export default function TermsPage() {
                 </h2>
                 <div className="space-y-4 text-muted-foreground leading-relaxed">
                   <p>
-                    You agree to indemnify, defend, and hold harmless Nextly, its officers, directors, employees, 
+                    You agree to indemnify, defend, and hold harmless Minder, its officers, directors, employees, 
                     agents, and affiliates from and against any and all claims, damages, obligations, losses, 
                     liabilities, costs, and expenses arising from:
                   </p>
@@ -578,7 +578,7 @@ export default function TermsPage() {
               <div className="mt-16 pt-8 border-t border-border text-center">
                 <div className="flex items-center justify-center gap-2 text-muted-foreground">
                   <Calendar className="w-4 h-4" />
-                  <span className="text-sm">Last updated: January 27, 2025</span>
+                  <span className="text-sm">Last updated: May 20, 2026</span>
                 </div>
                 <p className="text-sm text-muted-foreground mt-4">
                   These Terms of Service are effective as of the date listed above and replace all previous versions.

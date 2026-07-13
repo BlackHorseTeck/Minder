@@ -59,7 +59,7 @@ export const MessageLoading = () => {
             <div className="w-9 h-9 rounded-full bg-gradient-to-br from-muted/80 to-muted dark:from-muted/60 dark:to-muted/80 flex items-center justify-center border-2 border-border shadow-md">
               <Image 
                 src="/logo.svg" 
-                alt="Nextly AI" 
+                alt="Minder AI" 
                 width={20} 
                 height={20}
               />
@@ -70,7 +70,7 @@ export const MessageLoading = () => {
           
           {/* Name and generating status */}
           <div className="flex items-center gap-3">
-            <span className="text-base font-bold">Nextly AI</span>
+            <span className="text-base font-bold">Minder AI</span>
             <div className="flex items-center gap-1.5 px-2.5 py-1 bg-yellow-500/8 dark:bg-yellow-500/12 border border-yellow-500/20 dark:border-yellow-500/30 rounded-full">
               <Loader2 className="h-3.5 w-3.5 text-yellow-600 animate-spin" />
               <span className="text-xs font-medium text-yellow-700 dark:text-yellow-400">Generating</span>

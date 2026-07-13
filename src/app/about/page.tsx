@@ -18,15 +18,11 @@ const Page = () => {
   }, []);
 
   const socialLinks = [
-    { name: "Email", icon: CiMail, href: "mailto:vedantxn@gmail.com", color: "hover:text-blue-600" },
-    { name: "GitHub", icon: FaGithub, href: "https://github.com/vedantxn", color: "hover:text-gray-900 dark:hover:text-gray-100" },
+    { name: "Email", icon: CiMail, href: "mailto:blackhorse.lines@gmail.com", color: "hover:text-blue-600" },
+    { name: "GitHub", icon: FaGithub, href: "https://github.com/blackhorseteck", color: "hover:text-gray-900 dark:hover:text-gray-100" },
     { name: "X", icon: FaXTwitter, href: "https://x.com/vedantxn", color: "hover:text-gray-900 dark:hover:text-gray-100" },
     { name: "LinkedIn", icon: FaLinkedin, href: "https://linkedin.com/in/vedantxn", color: "hover:text-blue-600" },
-    { name: "Kaggle", icon: FaKaggle, href: "https://kaggle.com/vedantxn", color: "hover:text-blue-500" },
-    { name: "LeetCode", icon: SiLeetcode, href: "https://leetcode.com/vedantxn", color: "hover:text-orange-500" },
-    { name: "YouTube", icon: FaYoutube, href: "https://youtube.com/@vedthetank", color: "hover:text-red-600" },
-    { name: "Spotify", icon: FaSpotify, href: "https://spotify.com/user/vedantxn", color: "hover:text-green-500" },
-    { name: "Medium", icon: FaMedium, href: "https://medium.com/@vedantxn", color: "hover:text-gray-900 dark:hover:text-gray-100" }
+
   ];
 
   if (!mounted) return null;
@@ -62,7 +58,7 @@ const Page = () => {
               className="group relative inline-block"
             >
               <h1 className="text-4xl font-semibold text-foreground group-hover:text-primary transition-colors duration-300">
-                Nextly
+                Minder
               </h1>
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-500 ease-out"></span>
             </button>
@@ -79,7 +75,7 @@ const Page = () => {
 
             <div className="border-l-4 border-muted pl-6 py-2">
               <p className="text-lg leading-relaxed text-muted-foreground">
-                <span className="text-primary font-semibold">Nextly</span> is more than just a project. It's <span className="text-foreground font-medium">proof</span>. Proof that a single person, with no safety net, can create tools that rival what companies with millions in funding are still trying to figure out. It's not about hype or buzzwords—it's about <span className="text-primary font-semibold">execution, creativity</span>, and belief that ideas are worthless until they're built.
+                <span className="text-primary font-semibold">Minder</span> is more than just a project. It's <span className="text-foreground font-medium">proof</span>. Proof that a single person, with no safety net, can create tools that rival what companies with millions in funding are still trying to figure out. It's not about hype or buzzwords—it's about <span className="text-primary font-semibold">execution, creativity</span>, and belief that ideas are worthless until they're built.
               </p>
             </div>
 
@@ -91,7 +87,7 @@ const Page = () => {
 
             <div className="border-l-4 border-primary pl-6 py-2">
               <p className="text-lg leading-relaxed text-muted-foreground">
-                This is my story so far. From nothing, I'm <span className="text-foreground font-semibold">building</span>. From nowhere, I'm aiming everywhere. And Nextly is only the beginning.
+                This is my story so far. From nothing, I'm <span className="text-foreground font-semibold">building</span>. From nowhere, I'm aiming everywhere. And Minder is only the beginning.
               </p>
             </div>
           </div>
@@ -142,7 +138,7 @@ const Page = () => {
                 onClick={() => router.push("/")}
                 className="group relative bg-primary text-primary-foreground px-8 py-3 rounded-xl font-semibold hover:bg-primary/90 transition-all duration-300 hover:shadow-lg hover:shadow-primary/25 hover:-translate-y-0.5"
               >
-                Explore Nextly
+                Explore Minder
               </button>
             </div>
           </div>

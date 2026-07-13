@@ -255,8 +255,8 @@ export const ProjectForm = () => {
                           </div>
                           <span className="text-[10px] text-muted-foreground pl-6 mt-0.5">
                             {model.name === "codex" && "Best for deep reasoning"}
-                            {model.name === "gemini" && "Lightweight and free"}
-                            {model.name === "grok" && "X-powered fast model"}
+                            {model.name === "gemini" && "Google-powered fast model"}
+                            {model.name === "grok" && "Lightweight and free"}
                           </span>
                         </button>
                       );

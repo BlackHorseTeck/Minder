@@ -26,7 +26,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Build Apps Without Coding – AI Powered",
-  description: "Turn your ideas into production-ready Next.js apps with AI. Nextly makes app development simple, fast, and code-free.",
+  description: "Turn your ideas into production-ready Next.js apps with AI. Minder makes app development simple, fast, and code-free.",
   icons: {
     icon: "/logo.svg",
   },

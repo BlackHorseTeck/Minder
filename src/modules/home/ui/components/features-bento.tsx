@@ -65,7 +65,7 @@ export function Features() {
       <div className="mx-auto max-w-7xl px-6">
         <div className="mx-auto mb-12 max-w-2xl text-center">
           <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">Turn Your Prompts Into Reality</h2>
-          <p className="mt-4 text-lg text-muted-foreground">Nextly is packed with features designed to help you build and deploy Next.js applications faster than ever before.</p>
+          <p className="mt-4 text-lg text-muted-foreground">Minder is packed with features designed to help you build and deploy Next.js applications faster than ever before.</p>
         </div>
         
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-6">
@@ -94,11 +94,11 @@ export function Features() {
                 </div>
                 <div className="mt-4 flex items-baseline justify-center gap-2">
                   <p className="text-4xl font-bold text-primary">10</p>
-                  <p className="font-medium text-muted-foreground">Days of Rapid Progress</p>
+                  <p className="font-medium text-muted-foreground">Steps of Rapid Progress</p>
                 </div>
               </div>
               <div className="relative z-10 mt-6">
-                <h3 className="text-lg font-semibold text-foreground">Built by 1 Dropout in 10 Days</h3>
+                <h3 className="text-lg font-semibold text-foreground">Done by a solo AI engineer</h3>
                 <p className="mt-2 text-sm text-muted-foreground">Showcasing the power of rapid development from a simple idea to a fully functional product.</p>
               </div>
             </CardContent>
@@ -187,14 +187,14 @@ export function Features() {
                 </div>
                 <div className="mt-4">
                   <p><span className="text-green-400">$</span> npm run deploy</p>
-                  <p className="opacity-70">&gt; nextly@0.1.0 deploy /Users/nextly/app</p>
+                  <p className="opacity-70">&gt; minder@0.1.0 deploy /Users/minder/app</p>
                   <p className="opacity-70">&gt; e2b-deploy --sandbox</p>
                   <p className="mt-2 opacity-0 transition-opacity delay-200 duration-300 group-hover:opacity-70">✔ Authenticating...</p>
                   <p className="opacity-0 transition-opacity delay-500 duration-300 group-hover:opacity-70">✔ Building project...</p>
                   <p className="opacity-0 transition-opacity delay-700 duration-300 group-hover:opacity-70">✔ Provisioning sandbox...</p>
                   <div className="relative mt-1 opacity-0 transition-opacity delay-1000 duration-300 group-hover:opacity-100">
                     <p className="text-green-400">✔ Deployment complete!</p>
-                    <p className="truncate">  <span className="text-primary">&gt;</span> https://nextly-proj-a7b3f.e2b.dev</p>
+                    <p className="truncate">  <span className="text-primary">&gt;</span> https://minder-proj-a7b3f.e2b.dev</p>
                   </div>
                 </div>
               </div>

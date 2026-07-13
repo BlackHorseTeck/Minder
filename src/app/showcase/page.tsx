@@ -87,7 +87,7 @@ export default function ShowcasePage() {
             <div className="mb-12">
               <div className="inline-block p-3 bg-primary/10 rounded-xl mb-6">
                 <div className="text-primary font-medium text-sm tracking-wide">
-                  NEXTLY SHOWCASE
+                  MINDER SHOWCASE
                 </div>
               </div>
               <h1 className="text-6xl md:text-7xl font-semibold text-foreground mb-8 leading-tight">
@@ -114,7 +114,7 @@ export default function ShowcasePage() {
             <div className="mb-16 max-w-2xl mx-auto space-y-6">
               <p className="text-xl text-muted-foreground leading-relaxed">
                 We're crafting an experience that will fundamentally change how developers interact with AI. 
-                What you've seen with Nextly is just the beginning.
+                What you've seen with Minder is just the beginning.
               </p>
               <p className="text-lg text-muted-foreground leading-relaxed">
                 Behind the scenes, we're building something that pushes the boundaries of what's possible. 

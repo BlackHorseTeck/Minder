@@ -75,7 +75,7 @@ export default function PromptingGuideBlog() {
             onClick={() => router.push("/")}
             className="group relative text-muted-foreground hover:text-primary transition-colors duration-200"
           >
-            Back to <span className="font-semibold hover:text-primary">Nextly</span>
+            Back to <span className="font-semibold hover:text-primary">Minder</span>
             <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-foreground group-hover:w-full transition-all duration-300 ease-out"></span>
           </button>
           
@@ -114,7 +114,7 @@ export default function PromptingGuideBlog() {
               From basic techniques to advanced strategies used by industry professionals.
             </p>
             <div className="flex items-center justify-center gap-8 text-sm text-muted-foreground">
-              <span className="font-bold">January 22, 2025 | <span className="hover:text-primary font-semibold">⚠️ HUMAN-GENERATED CONTENT</span></span>
+              <span className="font-bold">May 20, 2026 | <span className="hover:text-primary font-semibold">⚠️ HUMAN-GENERATED CONTENT</span></span>
             </div>
           </div>
         </div>
@@ -1021,14 +1021,14 @@ export default function PromptingGuideBlog() {
             <div className="text-center mb-6">
               <h3 className="text-xl font-semibold text-foreground mb-4">About the Author</h3>
               <p className="text-muted-foreground leading-relaxed max-w-2xl mx-auto">
-                Written by the creator of Nextly, a platform that generates production-ready Next.js applications through AI. 
+                Written by the creator of Minder, a platform that generates production-ready Next.js applications through AI. 
                 This guide represents practical insights from building and deploying AI-generated code at scale, working with 
                 thousands of prompts, and helping developers worldwide improve their AI interaction skills.
               </p>
             </div>
             <div className="text-center text-sm text-muted-foreground">
               <div className="flex items-center justify-center gap-4 mb-2">
-                <span>Published: January 27, 2025</span>
+                <span>Published: May 20, 2026</span>
                 <span>•</span>
                 <span>Reading Time: 35 minutes</span>
               </div>

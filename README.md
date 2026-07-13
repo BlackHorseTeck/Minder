@@ -1,6 +1,6 @@
 <div align="center">
   
-  # Nextly
+  # Minder
   
   AI-powered Next.js application generator that transforms natural language prompts into production-ready code. From concept to deployment, skip the boilerplate and focus on what makes your project unique.
 
@@ -51,7 +51,7 @@ Refine your application through conversational prompts. Add features, adjust lay
 Generation and deployment can take up to 10 minutes due to free-tier AI model limitations and background job processing through Inngest. Patience is appreciated.
 
 **🔍 Manual Review Required**  
-AI-generated code should always be reviewed before production use. While Nextly produces clean code, human oversight ensures it meets your specific requirements and edge cases.
+AI-generated code should always be reviewed before production use. While Minder produces clean code, human oversight ensures it meets your specific requirements and edge cases.
 
 **⚠️ Occasional TypeScript Errors**  
 Being in beta, generated code may contain TypeScript or Next.js compilation errors. Most are minor and easily fixable, but debugging skills are recommended.
@@ -63,7 +63,7 @@ Deployed previews go down after 10-30 minutes due to budget constraints. Downloa
 Higher-than-average rate limits are in place, but still present. Heavy usage may trigger cooldown periods to maintain service stability for all users.
 
 **📦 Best for Small to Medium Projects**  
-Nextly excels at landing pages, portfolios, simple dashboards, and component libraries. Complex enterprise applications with intricate business logic, multi-step workflows, or extensive backend integration are not recommended. Keep projects focused and scoped appropriately.
+Minder excels at landing pages, portfolios, simple dashboards, and component libraries. Complex enterprise applications with intricate business logic, multi-step workflows, or extensive backend integration are not recommended. Keep projects focused and scoped appropriately.
 
 ---
 

@@ -22,7 +22,7 @@ const roles: Role[] = [
     title: "AI Engineer",
     type: "Full-time",
     location: "Remote",
-    description: "We're looking for an AI wizard who can make machines think, learn, and create. Not someone who follows tutorials, but someone who writes them. You'll be building the core AI systems that power Nextly's code generation capabilities.",
+    description: "We're looking for an AI wizard who can make machines think, learn, and create. Not someone who follows tutorials, but someone who writes them. You'll be building the core AI systems that power Minder's code generation capabilities.",
     requirements: [
       "Under 25 years old (we want fresh, unbiased thinking)",
       "No degree required - show us what you've built instead",

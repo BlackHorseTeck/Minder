@@ -25,7 +25,7 @@ export const HowItWorksSection = () => {
           transition={{ duration: 0.6, delay: 0.1 }}
           className="text-xl text-white"
         >
-          How <span className="text-primary font-bold italic">Nextly</span> does it
+          How <span className="text-primary font-bold italic">Minder</span> does it
         </motion.p>
 
         <motion.h2

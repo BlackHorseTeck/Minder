@@ -20,8 +20,7 @@ interface AgentState {
 }
 
 export const codeAgentFunction = inngest.createFunction(
-  { id: "code-agent" },
-  { event: "code-agent/run" },
+  { id: "code-agent", triggers: { event: "code-agent/run" } },
   async ({ event, step }) => {
 
     // --- Safe type-safe model selection ---
@@ -37,7 +36,7 @@ export const codeAgentFunction = inngest.createFunction(
 
     // DEBUGGING
     // if (!chosenModel) {
-    //   throw new Error(`Selected model "${selectedModel}" is not configured in environment variables!`);
+    //   throw new Error(\`Selected model "${selectedModel}" is not configured in environment variables!\`);
     // }
     
     const sandboxId = await step.run("get-sandbox-id", async () => {
@@ -112,9 +111,9 @@ export const codeAgentFunction = inngest.createFunction(
                 return result.stdout
               } catch (e) {
                 console.error(
-                  `Command failed: ${e} \nstddout: ${buffers.stdout}\nstderr: ${buffers.stderr}`,
+                  \`Command failed: ${e} \\nstddout: ${buffers.stdout}\\nstderr: ${buffers.stderr}\`,
                 );
-                return `Command failed: ${e} \nstddout: ${buffers.stdout}\nstderr: ${buffers.stderr}`;
+                return \`Command failed: ${e} \\nstddout: ${buffers.stdout}\\nstderr: ${buffers.stderr}\`;
               }
             });
           },
@@ -241,7 +240,7 @@ export const codeAgentFunction = inngest.createFunction(
     const sandboxUrl = await step.run("get-sandbox-url", async () => {
       const sandbox = await getSandboxId(sandboxId);
       const host = sandbox.getHost(3000);
-      return `https://${host}`;
+      return \`https://${host}\`;
     });
 
     await step.run("save-result", async() => {

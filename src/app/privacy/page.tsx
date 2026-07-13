@@ -100,7 +100,7 @@ export default function PrivacyPage() {
               <div className="mb-12 p-6 bg-muted/30 border-l-4 border-primary">
                 <h2 className="text-lg font-semibold text-foreground mb-3">Your Privacy Matters</h2>
                 <p className="text-muted-foreground leading-relaxed">
-                  This Privacy Policy explains how Nextly collects, uses, and protects your personal information 
+                  This Privacy Policy explains how Minder collects, uses, and protects your personal information 
                   when you use our AI-powered Next.js application generation platform.
                 </p>
               </div>
@@ -112,11 +112,11 @@ export default function PrivacyPage() {
                 </h2>
                 <div className="space-y-4 text-muted-foreground leading-relaxed">
                   <p>
-                    At Nextly, we believe privacy is a fundamental right. This policy describes how we collect, 
+                    At Minder, we believe privacy is a fundamental right. This policy describes how we collect, 
                     use, store, and protect your personal information when you use our service.
                   </p>
                   <p>
-                    This policy applies to all users of the Nextly platform. By using our service, you consent 
+                    This policy applies to all users of the Minder platform. By using our service, you consent 
                     to the data practices described in this policy.
                   </p>
                 </div>
@@ -159,7 +159,7 @@ export default function PrivacyPage() {
                   <p>We use your information for the following purposes:</p>
                   <ul className="list-none space-y-3 ml-2">
                     <li className="border-l-2 border-muted pl-3">
-                      <span className="font-semibold text-foreground">Service Provision:</span> To provide and operate the Nextly platform
+                      <span className="font-semibold text-foreground">Service Provision:</span> To provide and operate the Minder platform
                     </li>
                     <li className="border-l-2 border-muted pl-3">
                       <span className="font-semibold text-foreground">AI Improvement:</span> To improve our AI models and code generation

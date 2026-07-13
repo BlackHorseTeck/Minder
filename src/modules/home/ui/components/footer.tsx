@@ -58,12 +58,12 @@ export const Footer = () => {
             <div className="flex items-center gap-3">
               <Image 
                 src="/logo.svg" 
-                alt="Nextly" 
+                alt="Minder" 
                 width={28} 
                 height={28}
                 className="w-7 h-7"
               />
-              <h3 className="text-xl font-bold text-foreground">Nextly</h3>
+              <h3 className="text-xl font-bold text-foreground">Minder</h3>
             </div>
 
             {/* Enhanced Legal Links */}
@@ -88,11 +88,11 @@ export const Footer = () => {
           {/* Email */}
           <div>
             <a 
-              href="mailto:vedant@nextly.live"
+              href="mailto:blackhorse.lines@gmail.com"
               className="group relative inline-block"
             >
               <span className="text-xl lg:text-2xl font-bold text-foreground group-hover:text-primary transition-colors duration-300">
-                vedant@nextly.live
+                blackhorse.lines@gmail.com
               </span>
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-500 ease-out"></span>
             </a>
@@ -102,7 +102,7 @@ export const Footer = () => {
         {/* Social Media & Copyright */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-6 mt-8 pt-6 border-t border-border">
           <p className="text-sm text-muted-foreground">
-            © 2025 Nextly. All rights reserved.
+            © 2026 Minder. All rights reserved.
           </p>
           
           <div className="flex items-center gap-4">

@@ -35,7 +35,7 @@ export const Navbar = () => {
     {
       title: "About",
       href: "/about",
-      description: "Learn more about Nextly and our mission.",
+      description: "Learn more about Minder and our mission.",
     },
     {
       title: "Showcase",
@@ -88,7 +88,7 @@ export const Navbar = () => {
         <Link href="/" className="flex items-center gap-2 group">
           <Image
             src="/logo.svg"
-            alt="Nextly"
+            alt="Minder"
             width={isScrolled ? 22 : 26}
             height={isScrolled ? 22 : 26}
             className="transition-transform duration-300 group-hover:rotate-90"
@@ -100,7 +100,7 @@ export const Navbar = () => {
               "group-hover:text-primary"
             )}
           >
-            Nextly
+            Minder
           </span>
         </Link>
 

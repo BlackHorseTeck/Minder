@@ -58,7 +58,7 @@ export const ProjectsList = () => {
           </div>
           <div>
             <h2 className="text-xl font-bold bg-gradient-to-r from-foreground to-foreground/80 bg-clip-text text-transparent">
-              Vedant's Projects
+              Minder's Projects
             </h2>
             <p className="text-muted-foreground mt-1 text-md">
               {projects?.length || 0} {(projects?.length || 0) === 1 ? 'project' : 'projects'} • <span className="text-primary font-semibold">e2b</span>

@@ -79,7 +79,7 @@ export const MessageForm = ({ projectId }: Props) => {
   // MODEL SELECTOR
   const models = [
     { name: "codex", label: "GPT-5 (Codex)", icon: <SiOpenai />, isPro: true, description: "Best for deep reasoning" },
-    { name: "gemini", label: "Gemini-2.5 Flash", icon: <SiGoogle />, isPro: true, description: "Google-powered fast model" },
+    { name: "gemini", label: "Gemini-2.5 Flash", icon: <SiGoogle />, isPro: false, description: "Google-powered fast model" },
     { name: "grok", label: "Grok 4 Fast", icon: null, isPro: false, description: "Lightweight and free, suitable for everyone" },
   ];
 

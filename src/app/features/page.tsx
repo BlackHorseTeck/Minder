@@ -37,7 +37,7 @@ export default function FeaturesPage() {
             Features
           </h1>
           <p className="text-muted-foreground text-lg md:text-xl max-w-2xl mx-auto">
-            BuildByChat empowers you to create stunning Next.js apps with ease. Check out what makes our platform amazing:
+          Minder empowers you to create stunning Next.js apps with ease. Check out what makes our platform amazing:
           </p>
         </section>
 
