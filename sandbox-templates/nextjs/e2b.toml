@@ -10,8 +10,8 @@
 # import { Sandbox } from 'e2b'
 # const sandbox = await Sandbox.create('vedant-lovable-test-1')
 
-team_id = "797c8008-928d-47de-8a9c-ef75ca88e588"
+team_id = "d8c4c202-6645-48ee-9d07-df3f04fde4ee"
 start_cmd = "/compile_page.sh"
 dockerfile = "e2b.Dockerfile"
-template_name = "vedant-lovable-test-1"
-template_id = "lwltsannu9hu8y6qaqv0"
+template_name = "blackhorselines/vedant-lovable-test-1-dev"
+template_id = "7it3o728n24oaydj1zya"

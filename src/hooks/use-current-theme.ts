@@ -9,4 +9,3 @@ export const useCurrentTheme = () => {
 
   return systemTheme;
 };
-

@@ -38,7 +38,7 @@ const Page = () => {
           <a href="https://github.com/vedantxn/nextly" target="_blank" rel="noopener noreferrer">
             <Announcement className="hover:bg-primary hover:text-primary-foreground">
               <AnnouncementTitle>
-                🌟 Give us a star on GitHub
+              🌟 Give us a star on GitHub
                 <ArrowUpRightIcon size={16} className="shrink-0 text-muted-foreground" />
               </AnnouncementTitle>
             </Announcement>
@@ -49,7 +49,7 @@ const Page = () => {
           className="font-bold text-4xl md:text-5xl text-center transition-all duration-300 pl-4"
         />  
         <p className="text-lg md:text-xl text-muted-foreground text-center hover:italic">
-          From prompt to production-ready code — powered by <strong className="text-primary italic">AI</strong>
+        From prompt to production-ready code — powered by <strong className="text-primary italic">AI</strong>
         </p>
         <div className="max-w-3xl mx-auto w-full">
           <ProjectForm />

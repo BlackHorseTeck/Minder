@@ -45,7 +45,7 @@ export const HowItWorksSection = () => {
           transition={{ duration: 0.6, delay: 0.5 }}
           className="text-base text-white/80 leading-relaxed"
         >
-          Say goodbye to tutorials. Forget coding headaches. Type your app idea, and in a blink, you get a full-stack app ready to run, connect, and launch—without sacrificing your sanity. Think of it as your app genie.
+          Say goodbye to tutorials. Forget coding headaches. Type your app idea, and in a blink, you get a full-stack app ready to run, connect, and launchâ€”without sacrificing your sanity. Think of it as your app genie.
         </motion.p>
       </div>
 
