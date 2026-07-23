@@ -25,18 +25,7 @@ const GlassEffect: React.FC<{ children: React.ReactNode; className?: string }> =
   children,
   className = "",
 }) => (
-  <div className={`relative overflow-hidden rounded-3xl ${className}`}>
-    <div
-      className="absolute inset-0 z-0 rounded-3xl"
-      style={{ backdropFilter: "blur(14px)", background: "rgba(255, 255, 255, 0.15)" }}
-    />
-    <div
-      className="absolute inset-0 z-10 rounded-3xl"
-      style={{
-        boxShadow:
-          "inset 2px 2px 6px rgba(255,255,255,0.35), inset -2px -2px 6px rgba(0,0,0,0.1)",
-      }}
-    />
+  <div className={`relative overflow-hidden rounded-2xl bg-background/80 backdrop-blur-sm border border-border ${className}`}>
     <div className="relative z-20">{children}</div>
   </div>
 );
@@ -140,7 +129,7 @@ export const MessageForm = ({ projectId }: Props) => {
                   type="button"
                   ref={buttonRef}
                   onClick={() => setDropdownOpen((prev) => !prev)}
-                  className="flex items-center gap-1.5 px-3 py-1 rounded-full backdrop-blur-md border shadow-sm bg-white/20 dark:bg-white/10 border-white/20 text-foreground hover:bg-white/30 transition-all"
+                  className="flex items-center gap-1.5 px-3 py-1 rounded-full border border-border bg-background/80 backdrop-blur-sm text-foreground hover:bg-muted transition-all"
                 >
                   {selectedModel.icon && <span className="size-4">{selectedModel.icon}</span>}
                   <span className="font-medium">{selectedModel.label}</span>
@@ -183,7 +172,7 @@ export const MessageForm = ({ projectId }: Props) => {
                             <div className="flex items-center gap-1.5 text-xs">
                               {model.icon && <span className="size-3">{model.icon}</span>}
                               <span className="font-medium">{model.label}</span>
-                              {isBest && <span className="text-yellow-400 text-[10px]">⭐</span>}
+                              {isBest && <span className="text-primary text-[10px]">⭐</span>}
                             </div>
                             <span className="text-[8px] text-muted-foreground pl-4 mt-0.5">
                               {model.name === "codex" && "Best for deep reasoning"}
@@ -213,8 +202,8 @@ export const MessageForm = ({ projectId }: Props) => {
                   className={cn(
                     "size-8 rounded-full transition-all hover:scale-105",
                     isButtonDisabled
-                      ? "bg-white/30 dark:bg-white/10 backdrop-blur-md border border-white/20 shadow-sm opacity-50 cursor-not-allowed hover:scale-100 hover:bg-white/30"
-                      : "bg-primary text-primary-foreground shadow-md hover:bg-primary/40"
+                      ? "bg-muted border border-border opacity-50 cursor-not-allowed hover:scale-100"
+                      : "bg-primary text-primary-foreground shadow-md hover:bg-primary/90"
                   )}
                   disabled={isButtonDisabled}
                   onClick={form.handleSubmit(onSubmit)}
@@ -240,11 +229,11 @@ export const MessageForm = ({ projectId }: Props) => {
           background: transparent;
         }
         textarea::-webkit-scrollbar-thumb {
-          background: rgba(96, 165, 250, 0.5);
+          background: hsl(var(--primary) / 0.5);
           border-radius: 9999px;
         }
         textarea::-webkit-scrollbar-thumb:hover {
-          background: rgba(96, 165, 250, 0.7);
+          background: hsl(var(--primary) / 0.7);
         }
       `}</style>
     </Form>

@@ -33,19 +33,19 @@ export const ProjectHeader = ({ projectId }: Props) => {
   // const { theme, setTheme } = useTheme();
 
   return (
-    <header className="flex items-center justify-between p-4 border-b bg-background sticky top-0 z-50">
+    <header className="flex items-center justify-between p-4 border-b border-border bg-background/80 backdrop-blur-sm sticky top-0 z-50">
       {/* Left: Logo + Project Name */}
       <div className="flex items-center gap-3">
-        <Image src="/logo.svg" alt="Vibe" width={32} height={32} />
+        <Image src="/logo.svg" alt="Minder" width={28} height={28} className="w-7 h-7" />
         <div className="flex flex-col">
           <span className="text-lg font-bold text-foreground">
             {project?.name ?? "Project"}
           </span>
           <Link
-            href="/"
-            className="flex items-center text-sm text-muted-foreground hover:text-primary gap-1"
+            href="/projects"
+            className="flex items-center text-sm text-muted-foreground hover:text-primary gap-1 transition-colors duration-200"
           >
-            <ChevronLeftIcon size={16} /> Back to dashboard
+            <ChevronLeftIcon size={16} /> Back to projects
           </Link>
         </div>
       </div>

@@ -53,7 +53,7 @@ export const Usage = ({ points, msBeforeNext }: Props) => {
             className="flex items-center gap-1 hover:bg-primary/80 transition-colors hover:text-primary-foreground"
           >
             <Link href="/pricing" className="flex items-center gap-1">
-              <CrownIcon className="size-4 text-yellow-400" />
+              <CrownIcon className="size-4 text-primary" />
               Upgrade
             </Link>
           </Button>

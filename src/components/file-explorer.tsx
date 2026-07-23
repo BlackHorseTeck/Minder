@@ -144,7 +144,7 @@ export const FileExplorer = ({ files }: FileExplorerProps) => {
         defaultSize={22}
         minSize={15}
         maxSize={30}
-        className="bg-sidebar/20 dark:bg-sidebar/30 p-2 rounded-r-2xl shadow-inner backdrop-blur-sm overflow-auto"
+        className="bg-background/80 backdrop-blur-sm border-r border-border p-2 overflow-auto"
       >
         <TreeView
           data={treeData}
@@ -153,14 +153,14 @@ export const FileExplorer = ({ files }: FileExplorerProps) => {
         />
       </ResizablePanel>
 
-      <ResizableHandle className="hover:bg-primary transition-colors duration-200 w-1 cursor-col-resize" />
+      <ResizableHandle className="hover:bg-primary/50 transition-colors duration-200 w-1 cursor-col-resize" />
 
       {/* Code viewer */}
       <ResizablePanel defaultSize={78} minSize={50}>
         {selectedFile && files[selectedFile] ? (
-          <div className="flex flex-col h-full w-full rounded-xl overflow-hidden shadow-lg border border-border">
+          <div className="flex flex-col h-full w-full rounded-xl overflow-hidden border border-border">
             {/* Breadcrumb + copy button */}
-            <div className="flex justify-between items-center px-4 py-2 border-b bg-background/30 dark:bg-background/40 shadow-sm rounded-t-xl">
+            <div className="flex justify-between items-center px-4 py-2 border-b border-border bg-background/80 backdrop-blur-sm">
               <FileBreadcrumb filepath={selectedFile} />
               <Hint text={copied ? "Copied!" : "Copy to clipboard"} side="bottom">
                 <Button
@@ -175,7 +175,7 @@ export const FileExplorer = ({ files }: FileExplorerProps) => {
             </div>
 
             {/* Code content */}
-            <div className="flex-1 overflow-auto bg-background/10 dark:bg-background/20 p-4 transition-all duration-300">
+            <div className="flex-1 overflow-auto bg-background/50 p-4 transition-all duration-300">
               <CodeView
                 lang={getLanguageFromExtension(selectedFile)}
                 code={files[selectedFile]}

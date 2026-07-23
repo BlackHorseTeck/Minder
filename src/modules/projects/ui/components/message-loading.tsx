@@ -40,7 +40,7 @@ const ShimmerMessages = () => {
 
   return (
     <div className="flex items-center gap-3">
-      <Loader2 className="h-5 w-5 animate-spin text-yellow-600" />
+      <Loader2 className="h-5 w-5 animate-spin text-primary" />
       <span className="text-muted-foreground text-base">
         {messages[currentMessagesIndex]}{dots}
       </span>
@@ -65,15 +65,15 @@ export const MessageLoading = () => {
               />
             </div>
             {/* Pulsing yellow indicator for generating state */}
-            <div className="absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 bg-yellow-500 rounded-full border-2 border-background animate-pulse" />
+            <div className="absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 bg-primary rounded-full border-2 border-background animate-pulse" />
           </div>
           
           {/* Name and generating status */}
           <div className="flex items-center gap-3">
             <span className="text-base font-bold">Minder AI</span>
-            <div className="flex items-center gap-1.5 px-2.5 py-1 bg-yellow-500/8 dark:bg-yellow-500/12 border border-yellow-500/20 dark:border-yellow-500/30 rounded-full">
-              <Loader2 className="h-3.5 w-3.5 text-yellow-600 animate-spin" />
-              <span className="text-xs font-medium text-yellow-700 dark:text-yellow-400">Generating</span>
+            <div className="flex items-center gap-1.5 px-2.5 py-1 bg-primary/8 dark:bg-primary/12 border border-primary/20 dark:border-primary/30 rounded-full">
+              <Loader2 className="h-3.5 w-3.5 text-primary animate-spin" />
+              <span className="text-xs font-medium text-primary">Generating</span>
             </div>
           </div>
         </div>
@@ -83,10 +83,10 @@ export const MessageLoading = () => {
       <div className="pl-12 flex flex-col gap-4">
         <Card className={cn(
           "relative border-2 rounded-2xl p-5 shadow-sm",
-          "border-yellow-500/25 dark:border-yellow-500/35 bg-yellow-500/3 dark:bg-yellow-500/8"
+          "border-primary/25 dark:border-primary/35 bg-primary/3 dark:bg-primary/8"
         )}>
           {/* Subtle background decoration */}
-          <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-yellow-500/3 dark:from-yellow-500/6 to-transparent rounded-2xl" />
+          <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-primary/3 dark:from-primary/6 to-transparent rounded-2xl" />
           
           {/* Loading content */}
           <div className="relative">
@@ -94,7 +94,7 @@ export const MessageLoading = () => {
           </div>
 
           {/* Message tail - matching yellow theme */}
-          <div className="absolute -bottom-1 left-10 w-4 h-4 bg-yellow-500/3 dark:bg-yellow-500/8 border-l-2 border-b-2 border-yellow-500/25 dark:border-yellow-500/35 transform rotate-45" />
+          <div className="absolute -bottom-1 left-10 w-4 h-4 bg-primary/3 dark:bg-primary/8 border-l-2 border-b-2 border-primary/25 dark:border-primary/35 transform rotate-45" />
         </Card>
 
         {/* Optional: Skeleton for potential fragment card */}

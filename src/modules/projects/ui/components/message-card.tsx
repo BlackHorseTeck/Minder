@@ -228,7 +228,7 @@ const AssistantMessage = ({
             {/* Online indicator */}
             <div className={cn(
               "absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 rounded-full border-2 border-background",
-              isGenerating ? "bg-yellow-500 animate-pulse" : "bg-green-500"
+              isGenerating ? "bg-primary animate-pulse" : "bg-primary"
             )} />
           </div>
           
@@ -236,9 +236,9 @@ const AssistantMessage = ({
           <div className="flex items-center gap-3">
             <span className="text-base font-bold">Minder AI</span>
             {isGenerating && (
-              <div className="flex items-center gap-1.5 px-2.5 py-1 bg-yellow-500/8 dark:bg-yellow-500/12 border border-yellow-500/20 dark:border-yellow-500/30 rounded-full">
-                <Loader2 className="h-3.5 w-3.5 text-yellow-600 animate-spin" />
-                <span className="text-xs font-medium text-yellow-700 dark:text-yellow-400">Generating</span>
+              <div className="flex items-center gap-1.5 px-2.5 py-1 bg-primary/8 dark:bg-primary/12 border border-primary/20 dark:border-primary/30 rounded-full">
+                <Loader2 className="h-3.5 w-3.5 text-primary animate-spin" />
+                <span className="text-xs font-medium text-primary">Generating</span>
               </div>
             )}
             {isError && !isGenerating && (
@@ -248,9 +248,9 @@ const AssistantMessage = ({
               </div>
             )}
             {isResult && !isGenerating && (
-              <div className="flex items-center gap-1.5 px-2.5 py-1 bg-green-500/8 dark:bg-green-500/12 border border-green-500/20 dark:border-green-500/30 rounded-full">
-                <div className="h-2.5 w-2.5 bg-green-500 rounded-full" />
-                <span className="text-xs font-medium text-green-700 dark:text-green-400">Generated</span>
+              <div className="flex items-center gap-1.5 px-2.5 py-1 bg-primary/8 dark:bg-primary/12 border border-primary/20 dark:border-primary/30 rounded-full">
+                <div className="h-2.5 w-2.5 bg-primary rounded-full" />
+                <span className="text-xs font-medium text-primary">Generated</span>
               </div>
             )}
           </div>
@@ -269,10 +269,10 @@ const AssistantMessage = ({
         {/* Message card */}
         <Card className={cn(
           "relative border-2 rounded-2xl p-5 shadow-sm group/content",
-          isGenerating && "border-yellow-500/25 dark:border-yellow-500/35 bg-yellow-500/3 dark:bg-yellow-500/8",
+          isGenerating && "border-primary/25 dark:border-primary/35 bg-primary/3 dark:bg-primary/8",
           isError && !isGenerating && "border-destructive/25 dark:border-destructive/35 bg-destructive/3 dark:bg-destructive/8",
           isResult && !isGenerating && "border-primary/25 dark:border-primary/35 bg-primary/3 dark:bg-primary/8",
-          !isError && !isResult && !isGenerating && "bg-card border-border"
+          !isError && !isResult && !isGenerating && "bg-background/80 backdrop-blur-sm border-border"
         )}>
           {/* Very mild background decoration */}
           {isResult && !isGenerating && (
@@ -286,7 +286,7 @@ const AssistantMessage = ({
           )}>
             {isGenerating ? (
               <div className="flex items-center gap-3">
-                <Loader2 className="h-5 w-5 animate-spin text-yellow-600" />
+                <Loader2 className="h-5 w-5 animate-spin text-primary" />
                 <span className="text-muted-foreground">
                   {getLoadingMessage()}{loadingDots}
                 </span>
@@ -305,7 +305,7 @@ const AssistantMessage = ({
               className="absolute top-3 right-3 h-7 w-7 opacity-0 group-hover/content:opacity-100 transition-opacity duration-200 hover:bg-muted/80"
             >
               {copied ? (
-                <CheckIcon className="h-4 w-4 text-green-600" />
+                <CheckIcon className="h-4 w-4 text-primary" />
               ) : (
                 <CopyIcon className="h-4 w-4" />
               )}
@@ -315,10 +315,10 @@ const AssistantMessage = ({
           {/* Message tail - milder */}
           <div className={cn(
             "absolute -bottom-1 left-10 w-4 h-4 border-l-2 border-b-2 transform rotate-45",
-            isGenerating ? "bg-yellow-500/3 dark:bg-yellow-500/8 border-yellow-500/25 dark:border-yellow-500/35" :
-            isError ? "bg-destructive/3 dark:bg-destructive/8 border-destructive/25 dark:border-destructive/35" : 
-            isResult ? "bg-primary/3 dark:bg-primary/8 border-primary/25 dark:border-primary/35" : 
-            "bg-card border-border"
+          isGenerating ? "bg-primary/3 dark:bg-primary/8 border-primary/25 dark:border-primary/35" :
+          isError ? "bg-destructive/3 dark:bg-destructive/8 border-destructive/25 dark:border-destructive/35" : 
+          isResult ? "bg-primary/3 dark:bg-primary/8 border-primary/25 dark:border-primary/35" : 
+          "bg-background/80 backdrop-blur-sm border-border"
           )} />
         </Card>
 

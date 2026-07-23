@@ -68,7 +68,7 @@ export const ProjectView = ({ projectId }: Props) => {
     const displayUrl = sandboxUrl.length > 50 ? `${sandboxUrl.substring(0, 47)}...` : sandboxUrl;
 
     return (
-        <div className="h-screen overflow-hidden bg-background text-foreground">
+        <div className="h-screen overflow-hidden bg-background dark:bg-[radial-gradient(#393e4a_1px,transparent_1px)] text-foreground bg-[radial-gradient(#dadde2_1px,transparent_1px)] [background-size:16px_16px]">
             <ResizablePanelGroup direction="horizontal" className="animate-in fade-in duration-500">
                 {/* LEFT PANEL - Messages with fixed input */}
                 <ResizablePanel defaultSize={35} minSize={25} className="flex flex-col min-h-0">
@@ -95,7 +95,7 @@ export const ProjectView = ({ projectId }: Props) => {
                     </div>
                 </ResizablePanel>
 
-                <ResizableHandle className="w-1.5 bg-border transition-colors hover:bg-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2" />
+                <ResizableHandle className="w-1.5 bg-border/50 transition-colors hover:bg-primary/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2" />
 
                 {/* RIGHT PANEL - Preview/Code */}
                 <ResizablePanel defaultSize={65} minSize={30} className="flex min-h-0 flex-col">
@@ -106,7 +106,7 @@ export const ProjectView = ({ projectId }: Props) => {
                         onValueChange={(value) => setTabState(value as "preview" | "code")}
                     >
                         {/* Tab Header - Fixed */}
-                        <div className="flex items-center justify-between border-b bg-background/50 p-3 backdrop-blur-sm gap-4">
+                        <div className="flex items-center justify-between border-b border-border bg-background/80 p-3 backdrop-blur-sm gap-4">
                             <TabsList className="grid h-9 grid-cols-2 p-1 bg-muted flex-shrink-0">
                                 <TabsTrigger 
                                     value="preview" 

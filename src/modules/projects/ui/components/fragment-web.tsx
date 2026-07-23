@@ -86,7 +86,7 @@ export function FragmentWeb({ data }: Props) {
   if (!data.sandboxUrl) {
     return (
       <div className="flex flex-col w-full h-full">
-        <div className="flex-1 relative border-2 border-dashed border-border/50 rounded-2xl overflow-hidden bg-muted/20">
+        <div className="flex-1 relative border-2 border-dashed border-border rounded-2xl overflow-hidden bg-background/80 backdrop-blur-sm">
           <EmptyState />
         </div>
       </div>
@@ -95,7 +95,7 @@ export function FragmentWeb({ data }: Props) {
 
   return (
     <div className="flex flex-col w-full h-full">
-      <div className="flex-1 relative border border-border rounded-2xl overflow-hidden shadow-lg bg-background">
+      <div className="flex-1 relative border border-border rounded-2xl overflow-hidden shadow-lg bg-background/80 backdrop-blur-sm">
         {/* Main iframe container */}
         <div className="relative w-full h-full">
           <iframe
@@ -121,7 +121,7 @@ export function FragmentWeb({ data }: Props) {
         </div>
 
         {/* Subtle glass effect border */}
-        <div className="absolute inset-0 pointer-events-none rounded-2xl bg-gradient-to-br from-white/[0.02] via-transparent to-black/[0.02] dark:from-white/[0.01] dark:to-white/[0.01]" />
+        <div className="absolute inset-0 pointer-events-none rounded-2xl bg-gradient-to-br from-primary/[0.02] via-transparent to-transparent" />
         
         {/* Inner shadow for depth */}
         <div className="absolute inset-0 pointer-events-none rounded-2xl shadow-inner shadow-black/5 dark:shadow-white/5" />
