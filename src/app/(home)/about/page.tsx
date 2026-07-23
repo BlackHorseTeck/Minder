@@ -15,17 +15,17 @@ const Page = () => {
   }, []);
 
   const socialLinks = [
-    { name: "Email", icon: CiMail, href: "mailto:blackhorse.lines@gmail.com", color: "hover:text-blue-600" },
+    { name: "Email", icon: CiMail, href: "mailto:blackhorse.lines@gmail.com", color: "hover:text-primary" },
     { name: "GitHub", icon: FaGithub, href: "https://github.com/blackhorseteck", color: "hover:text-gray-900 dark:hover:text-gray-100" },
     { name: "X", icon: FaXTwitter, href: "https://x.com/vedantxn", color: "hover:text-gray-900 dark:hover:text-gray-100" },
-    { name: "LinkedIn", icon: FaLinkedin, href: "https://linkedin.com/in/vedantxn", color: "hover:text-blue-600" },
+    { name: "LinkedIn", icon: FaLinkedin, href: "https://linkedin.com/in/vedantxn", color: "hover:text-primary" },
 
   ];
 
   if (!mounted) return null;
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="flex flex-col max-w-5xl mx-auto w-full px-6 py-[10vh]">
       <div className="max-w-4xl mx-auto px-8 py-16">
         {/* Main Content */}
         <div className="bg-background border border-border rounded-2xl p-12 shadow-lg">
@@ -76,7 +76,7 @@ const Page = () => {
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`relative p-4 rounded-xl border border-border hover:border-primary/50 text-muted-foreground ${social.color} transition-all duration-300 hover:shadow-md hover:shadow-black/5 hover:-translate-y-1 group`}
+                    className={`relative p-4 rounded-xl border border-border hover:border-primary/50 text-muted-foreground hover:text-primary transition-all duration-300 hover:shadow-md hover:shadow-black/5 hover:-translate-y-1 group`}
                     onMouseEnter={() => setHoveredSocial(social.name)}
                     onMouseLeave={() => setHoveredSocial(null)}
                     aria-label={`Connect on ${social.name}`}

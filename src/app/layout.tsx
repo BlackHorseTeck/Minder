@@ -6,7 +6,7 @@ import { TRPCReactProvider } from "@/trpc/client";
 import { Toaster } from "@/components/ui/sonner";
 import { ThemeProvider } from "next-themes";
 
-import { ClerkProvider } from "@clerk/nextjs";
+import { ClerkProvider } from "@/lib/mock-clerk";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

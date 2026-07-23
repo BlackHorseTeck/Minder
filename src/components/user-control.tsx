@@ -1,7 +1,7 @@
 "use client";
 
 import { useCurrentTheme } from "@/hooks/use-current-theme";
-import { UserButton } from "@clerk/nextjs";
+import { UserButton } from '@/lib/mock-clerk';
 import { dark } from "@clerk/themes";
 
 interface Props { 

@@ -8,7 +8,7 @@ import BlurText from "@/components/21stdev/blur-text";
 import { HowItWorksSection } from "@/modules/home/ui/components/tagline";
 import ComparisonFeature from "@/modules/home/ui/components/compariosn";
 import { Loader2 } from "lucide-react";
-import { useUser } from "@clerk/nextjs";
+import { useUser } from '@/lib/mock-clerk';
 import { ProjectsList } from "@/modules/home/ui/components/projects-list";
 import { Features } from "@/modules/home/ui/components/features-bento";
 

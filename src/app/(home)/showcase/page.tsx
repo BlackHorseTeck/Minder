@@ -34,29 +34,8 @@ export default function ShowcasePage() {
   if (!mounted) return null;
 
   return (
-    <div className="min-h-screen bg-background overflow-hidden relative">
-      {/* Animated Background Elements */}
-      <div className="fixed inset-0 bg-gradient-to-br from-primary/5 via-background to-primary/10"></div>
-      <div className="fixed top-1/4 -right-32 w-64 h-64 bg-primary/10 rounded-full blur-3xl animate-pulse"></div>
-      <div className="fixed bottom-1/4 -left-32 w-64 h-64 bg-primary/15 rounded-full blur-3xl animate-pulse delay-1000"></div>
-      
-      {/* Floating Particles */}
-      <div className="fixed inset-0 pointer-events-none">
-        {[...Array(20)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute w-1 h-1 bg-primary/30 rounded-full animate-float"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 3}s`,
-              animationDuration: `${3 + Math.random() * 2}s`
-            }}
-          />
-        ))}
-      </div>
-
-      <div className="relative z-10 max-w-6xl mx-auto px-8 py-12 min-h-screen flex flex-col">
+    <div className="flex flex-col max-w-5xl mx-auto w-full px-6 py-[10vh]">
+      <div>
         {/* Main Content */}
         <div className="flex-1 flex items-center justify-center">
           <div className="text-center max-w-4xl mx-auto">
@@ -116,9 +95,9 @@ export default function ShowcasePage() {
                         <div className="flex items-center gap-2">
                           <span className="text-xs text-muted-foreground">{item.progress}%</span>
                           <div className={`w-2 h-2 rounded-full ${
-                            item.status === 'complete' ? 'bg-green-500' :
+                            item.status === 'complete' ? 'bg-primary' :
                             item.status === 'active' ? 'bg-primary animate-pulse' :
-                            item.status === 'in-progress' ? 'bg-yellow-500' :
+                            item.status === 'in-progress' ? 'bg-primary' :
                             'bg-muted'
                           }`} />
                         </div>
@@ -165,17 +144,17 @@ export default function ShowcasePage() {
                   </div>
                 </form>
               ) : (
-                <div className="bg-green-50 dark:bg-green-950/20 border border-green-200 dark:border-green-800 rounded-xl p-6">
+                <div className="bg-primary/5 border border-primary/20 rounded-xl p-6">
                   <div className="text-center">
-                    <div className="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
                       <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                       </svg>
                     </div>
-                    <h4 className="text-lg font-semibold text-green-800 dark:text-green-200 mb-2">
+                    <h4 className="text-lg font-semibold text-foreground mb-2">
                       You're on the list!
                     </h4>
-                    <p className="text-sm text-green-700 dark:text-green-300">
+                    <p className="text-sm text-muted-foreground">
                       We'll notify you the moment our showcase goes live.
                     </p>
                   </div>
@@ -195,16 +174,6 @@ export default function ShowcasePage() {
           </div>
         </div>
       </div>
-
-      <style jsx>{`
-        @keyframes float {
-          0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.7; }
-          50% { transform: translateY(-20px) rotate(180deg); opacity: 1; }
-        }
-        .animate-float {
-          animation: float linear infinite;
-        }
-      `}</style>
     </div>
   );
 }

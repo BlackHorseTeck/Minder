@@ -25,7 +25,7 @@ export default function PrivacyPage() {
   if (!mounted) return null;
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="flex flex-col max-w-5xl mx-auto w-full px-6 py-[10vh]">
       <div className="max-w-7xl mx-auto px-8 py-12">
         {/* Header */}
         <div className="flex items-center justify-between mb-12">
@@ -39,7 +39,7 @@ export default function PrivacyPage() {
           </Link>
         </div>
 
-        <div className="flex gap-12">
+        <div>
           {/* Table of Contents */}
           <div className="hidden lg:block w-80 flex-shrink-0">
             <div className="sticky top-8 bg-background border border-border rounded-xl p-6 shadow-sm">
@@ -104,7 +104,7 @@ export default function PrivacyPage() {
                 <div className="space-y-4 text-muted-foreground leading-relaxed">
                   <p>We collect several types of information to provide and improve our services:</p>
                   
-                  <div className="border-l-4 border-blue-500 pl-4 py-3">
+                  <div className="border-l-4 border-primary pl-4 py-3">
                     <h4 className="font-semibold text-foreground mb-2">Account Information:</h4>
                     <ul className="list-none space-y-1">
                       <li className="border-l-2 border-muted pl-3">Email address and authentication credentials</li>
@@ -113,7 +113,7 @@ export default function PrivacyPage() {
                     </ul>
                   </div>
 
-                  <div className="border-l-4 border-green-500 pl-4 py-3">
+                  <div className="border-l-4 border-primary pl-4 py-3">
                     <h4 className="font-semibold text-foreground mb-2">Usage Data:</h4>
                     <ul className="list-none space-y-1">
                       <li className="border-l-2 border-muted pl-3">Project data and generated code</li>
@@ -155,7 +155,7 @@ export default function PrivacyPage() {
                 </h2>
                 <div className="space-y-4 text-muted-foreground leading-relaxed">
                   <p>We do not sell your personal information. We only share data in limited circumstances:</p>
-                  <div className="border-l-4 border-red-500 pl-4 py-3">
+                  <div className="border border-border pl-4 py-3 rounded-lg">
                     <ul className="list-none space-y-2">
                       <li className="border-l-2 border-muted pl-3">With trusted service providers who help operate our platform</li>
                       <li className="border-l-2 border-muted pl-3">When required by law or court order</li>
@@ -172,7 +172,7 @@ export default function PrivacyPage() {
                 </h2>
                 <div className="space-y-4 text-muted-foreground leading-relaxed">
                   <p>We implement comprehensive security measures to protect your information:</p>
-                  <div className="border-l-4 border-green-500 pl-4 py-3">
+                  <div className="border-l-4 border-primary pl-4 py-3">
                     <ul className="list-none space-y-1">
                       <li className="border-l-2 border-muted pl-3">End-to-end encryption for data transmission</li>
                       <li className="border-l-2 border-muted pl-3">AES-256 encryption for stored data</li>
@@ -190,7 +190,7 @@ export default function PrivacyPage() {
                 </h2>
                 <div className="space-y-4 text-muted-foreground leading-relaxed">
                   <p>You have important rights regarding your personal information:</p>
-                  <div className="border-l-4 border-blue-500 pl-4 py-3">
+                  <div className="border-l-4 border-primary pl-4 py-3">
                     <ul className="list-none space-y-2">
                       <li className="border-l-2 border-muted pl-3">
                         <span className="font-semibold text-foreground">Access:</span> Request a copy of your personal information

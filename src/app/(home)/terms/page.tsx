@@ -27,7 +27,7 @@ export default function TermsPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="flex flex-col max-w-5xl mx-auto w-full px-6 py-[10vh]">
       <div className="max-w-7xl mx-auto px-8 py-12">
         {/* Header */}
         <div className="flex items-center justify-between mb-8">
@@ -42,7 +42,7 @@ export default function TermsPage() {
         </div>
 
 
-        <div className="flex gap-12">
+        <div>
           {/* Table of Contents - Sticky Sidebar */}
           <div className="hidden lg:block w-80 flex-shrink-0">
             <div className="sticky top-8 bg-background border border-border rounded-2xl p-6 shadow-sm">
@@ -171,9 +171,9 @@ export default function TermsPage() {
                     You agree to use Minder only for lawful purposes and in accordance with these Terms. 
                     Prohibited uses include, but are not limited to:
                   </p>
-                  <div className="bg-red-50 dark:bg-red-950/20 border border-red-200 dark:border-red-800 p-4 rounded-xl">
-                    <h4 className="font-semibold text-red-700 dark:text-red-400 mb-2">Prohibited Activities:</h4>
-                    <ul className="list-disc pl-6 space-y-1 text-red-600 dark:text-red-300">
+                  <div className="bg-background border border-border p-4 rounded-xl">
+                    <h4 className="font-semibold text-foreground mb-2">Prohibited Activities:</h4>
+                    <ul className="list-disc pl-6 space-y-1 text-muted-foreground">
                       <li>Generating malicious code, malware, or security exploits</li>
                       <li>Creating applications that violate laws or regulations</li>
                       <li>Reverse engineering or attempting to extract our AI models</li>
@@ -201,9 +201,9 @@ export default function TermsPage() {
                   Minder's AI service generates code based on your prompts and requirements. Important considerations 
                     regarding AI-generated content:
                   </p>
-                  <div className="bg-amber-50 dark:bg-amber-950/20 border border-amber-200 dark:border-amber-800 p-4 rounded-xl">
-                    <h4 className="font-semibold text-amber-700 dark:text-amber-400 mb-2">AI Content Disclaimer:</h4>
-                    <ul className="list-disc pl-6 space-y-1 text-amber-600 dark:text-amber-300">
+                  <div className="bg-background/80 backdrop-blur border border-border p-4 rounded-xl">
+                    <h4 className="font-semibold text-amber-700 dark:text-primary mb-2">AI Content Disclaimer:</h4>
+                    <ul className="list-disc pl-6 space-y-1 text-muted-foreground">
                       <li>Generated code may contain errors, bugs, or security vulnerabilities</li>
                       <li>AI responses are not guaranteed to be accurate or complete</li>
                       <li>Code may not follow all best practices or optimization techniques</li>
@@ -264,9 +264,9 @@ export default function TermsPage() {
                     You retain ownership of all original content, prompts, and data you provide to Minder. 
                     However, you grant us certain rights to provide and improve our services:
                   </p>
-                  <div className="bg-blue-50 dark:bg-blue-950/20 border border-blue-200 dark:border-blue-800 p-4 rounded-xl">
-                    <h4 className="font-semibold text-blue-700 dark:text-blue-400 mb-2">License Grant:</h4>
-                    <p className="text-blue-600 dark:text-blue-300">
+                  <div className="bg-background/80 backdrop-blur border border-border p-4 rounded-xl">
+                    <h4 className="font-semibold text-blue-700 dark:text-primary mb-2">License Grant:</h4>
+                    <p className="text-primary dark:text-blue-300">
                       You grant Minder a worldwide, non-exclusive, royalty-free license to use, process, 
                       and analyze your content solely for the purpose of providing services, improving our AI models, 
                       and developing new features.
@@ -381,7 +381,7 @@ export default function TermsPage() {
                   11. Disclaimers and Warranties
                 </h2>
                 <div className="space-y-4 text-muted-foreground leading-relaxed">
-                  <div className="bg-gray-50 dark:bg-gray-900/50 border border-gray-200 dark:border-gray-700 p-4 rounded-xl">
+                  <div className="bg-background/80 backdrop-blur border border-border p-4 rounded-xl">
                     <p className="font-semibold text-foreground mb-2">IMPORTANT DISCLAIMER:</p>
                     <p className="text-sm">
                       THE SERVICE IS PROVIDED "AS IS" AND "AS AVAILABLE" WITHOUT WARRANTIES OF ANY KIND, 
@@ -413,9 +413,9 @@ export default function TermsPage() {
                   12. Limitation of Liability
                 </h2>
                 <div className="space-y-4 text-muted-foreground leading-relaxed">
-                  <div className="bg-red-50 dark:bg-red-950/20 border border-red-200 dark:border-red-800 p-4 rounded-xl">
-                    <p className="font-semibold text-red-700 dark:text-red-400 mb-2">LIABILITY LIMITATION:</p>
-                    <p className="text-red-600 dark:text-red-300 text-sm">
+                  <div className="bg-background border border-border p-4 rounded-xl">
+                    <p className="font-semibold text-foreground mb-2">LIABILITY LIMITATION:</p>
+                    <p className="text-muted-foreground text-sm">
                       IN NO EVENT SHALL MINDER BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, 
                       OR PUNITIVE DAMAGES, INCLUDING WITHOUT LIMITATION, LOSS OF PROFITS, DATA, USE, GOODWILL, 
                       OR OTHER INTANGIBLE LOSSES.

@@ -14,7 +14,7 @@ import { useTRPC } from "@/trpc/client";
 import { Button } from "@/components/ui/button";
 import { Form, FormField } from "@/components/ui/form";
 import { Usage } from "./usage";
-import { useAuth } from "@clerk/nextjs";
+import { useAuth } from '@/lib/mock-clerk';
 import { createPortal } from "react-dom";
 
 interface Props {

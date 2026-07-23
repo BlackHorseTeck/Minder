@@ -4,9 +4,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 
 export default function PromptingGuideBlog() {
-  const [activeSection, setActiveSection] = useState<string>("");
   const [mounted, setMounted] = useState(false);
-  const [readingProgress, setReadingProgress] = useState(0);
 
   useEffect(() => {
     setMounted(true);
@@ -28,47 +26,17 @@ export default function PromptingGuideBlog() {
       });
       setActiveSection(current);
     };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
-  const sections = [
-    { id: "introduction", title: "Introduction to Prompt Engineering" },
-    { id: "fundamentals", title: "Core Fundamentals" },
-    { id: "psychology", title: "Understanding AI Psychology" },
-    { id: "structure", title: "Prompt Structure & Anatomy" },
-    { id: "code-specific", title: "Code Generation Techniques" },
-    { id: "app-generation", title: "Application Generation Mastery" },
-    { id: "advanced-patterns", title: "Advanced Prompting Patterns" },
-    { id: "context-management", title: "Context Management" },
-    { id: "iterative-refinement", title: "Iterative Refinement" },
-    { id: "debugging", title: "Prompt Debugging Strategies" },
-    { id: "performance", title: "Performance Optimization" },
-    { id: "common-mistakes", title: "Common Pitfalls & Solutions" },
-    { id: "best-practices", title: "Industry Best Practices" },
-    { id: "templates", title: "Professional Templates" },
-    { id: "examples", title: "Real-World Examples" },
-    { id: "troubleshooting", title: "Troubleshooting Guide" },
-    { id: "conclusion", title: "Mastery Conclusion" }
-  ];
 
   if (!mounted) return null;
 
   return (
-    <div className="min-h-screen bg-background">
-      {/* Reading Progress Bar */}
-      <div className="fixed top-0 left-0 w-full h-1 bg-muted z-50">
-        <div 
-          className="h-full bg-gradient-to-r from-primary to-primary/80 transition-all duration-150"
-          style={{ width: `${readingProgress}%` }}
-        />
-      </div>
-      <div className="max-w-4xl mx-auto px-8 py-12">
+    <div className="flex flex-col max-w-5xl mx-auto w-full px-6 py-[10vh]">
+      <div>
 
         {/* Hero Section */}
         <div className="mb-20">
-          <div className="relative h-80 mb-12 rounded-2xl overflow-hidden bg-gradient-to-br from-primary/20 via-primary/10 to-background border border-primary/20">
+          <div className="relative h-80 mb-12 rounded-2xl overflow-hidden bg-background/80 backdrop-blur border border-primary/20">
             <Image
               src="https://framerusercontent.com/images/uiFMF1Pd0tF3pWL2HvL99T3eVM.png"
               alt="AI Prompt Engineering Guide - Master the art of crafting effective prompts"
@@ -106,7 +74,7 @@ export default function PromptingGuideBlog() {
               Introduction to Prompt Engineering
             </h2>
             
-            <div className="bg-gradient-to-r from-primary/5 to-primary/10 border-l-4 border-primary p-8 rounded-r-xl mb-8">
+            <div className="bg-primary/5 border border-primary/20 p-8 rounded-r-xl mb-8">
               <p className="text-xl text-foreground font-medium mb-4 leading-relaxed">
                 Prompt engineering is the cornerstone of effective AI interaction—especially when generating code and applications.
               </p>
@@ -129,43 +97,43 @@ export default function PromptingGuideBlog() {
               represents years of experimentation, refinement, and real-world application across thousands of prompts and projects.
             </p>
 
-            <div className="bg-amber-50 dark:bg-amber-950/20 border border-amber-200 dark:border-amber-800 p-8 rounded-xl mb-8">
-              <h4 className="text-lg font-semibold text-amber-800 dark:text-amber-200 mb-4">What You'll Master in This Guide:</h4>
+            <div className="bg-background/80 backdrop-blur border border-border p-8 rounded-xl mb-8">
+              <h4 className="text-lg font-semibold text-foreground mb-4">What You'll Master in This Guide:</h4>
               <div className="grid md:grid-cols-2 gap-4">
-                <ul className="space-y-3 text-amber-700 dark:text-amber-300">
+                <ul className="space-y-3 text-muted-foreground">
                   <li className="flex items-start gap-3">
-                    <span className="text-amber-500 mt-1 font-semibold">→</span>
+                    <span className="text-primary mt-1 font-semibold">→</span>
                     <span>Fundamental principles that govern effective AI communication</span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <span className="text-amber-500 mt-1 font-semibold">→</span>
+                    <span className="text-primary mt-1 font-semibold">→</span>
                     <span>Advanced techniques for generating complex, production-ready code</span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <span className="text-amber-500 mt-1 font-semibold">→</span>
+                    <span className="text-primary mt-1 font-semibold">→</span>
                     <span>Strategies for building entire applications through iterative prompting</span>
                   </li>
                 </ul>
-                <ul className="space-y-3 text-amber-700 dark:text-amber-300">
+                <ul className="space-y-3 text-muted-foreground">
                   <li className="flex items-start gap-3">
-                    <span className="text-amber-500 mt-1 font-semibold">→</span>
+                    <span className="text-primary mt-1 font-semibold">→</span>
                     <span>Industry secrets for maintaining context and achieving consistency</span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <span className="text-amber-500 mt-1 font-semibold">→</span>
+                    <span className="text-primary mt-1 font-semibold">→</span>
                     <span>Debugging techniques for when prompts don't work as expected</span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <span className="text-amber-500 mt-1 font-semibold">→</span>
+                    <span className="text-primary mt-1 font-semibold">→</span>
                     <span>Professional templates and patterns used by leading AI engineers</span>
                   </li>
                 </ul>
               </div>
             </div>
 
-            <div className="bg-blue-50 dark:bg-blue-950/20 border border-blue-200 dark:border-blue-800 p-6 rounded-xl">
-              <h4 className="text-lg font-semibold text-blue-800 dark:text-blue-200 mb-3">The Economics of Good Prompting</h4>
-              <p className="text-blue-700 dark:text-blue-300 leading-relaxed">
+            <div className="bg-background/80 backdrop-blur border border-border p-6 rounded-xl">
+              <h4 className="text-lg font-semibold text-foreground mb-3">The Economics of Good Prompting</h4>
+              <p className="text-muted-foreground leading-relaxed">
                 A well-crafted prompt can save you hours of development time and iterations. Poor prompting leads to frustration, 
                 wasted API calls, and suboptimal results. The ROI of mastering these techniques is measured in both time saved 
                 and quality of output achieved.
@@ -193,13 +161,13 @@ export default function PromptingGuideBlog() {
                   Ambiguous prompts generate ambiguous results. Every word in your prompt should serve a specific purpose. 
                   Vague requests like "make it better" or "optimize this" will waste your time and the AI's processing power.
                 </p>
-                <div className="bg-red-50 dark:bg-red-950/20 border border-red-200 dark:border-red-800 p-4 rounded-lg mb-4">
-                  <p className="font-mono text-sm text-red-700 dark:text-red-300">
+                <div className="bg-background border border-border p-4 rounded-lg mb-4">
+                  <p className="font-mono text-sm text-muted-foreground">
                     Bad: "Improve this function to make it faster"
                   </p>
                 </div>
-                <div className="bg-green-50 dark:bg-green-950/20 border border-green-200 dark:border-green-800 p-4 rounded-lg">
-                  <p className="font-mono text-sm text-green-700 dark:text-green-300">
+                <div className="bg-primary/5 border border-primary/20 p-4 rounded-lg">
+                  <p className="font-mono text-sm text-muted-foreground">
                     Good: "Optimize this function to reduce time complexity from O(n²) to O(n log n) by implementing a more efficient sorting algorithm, while maintaining the same input/output interface"
                   </p>
                 </div>
@@ -236,7 +204,7 @@ export default function PromptingGuideBlog() {
               </div>
             </div>
 
-            <div className="bg-gray-50 dark:bg-gray-900/50 border border-gray-200 dark:border-gray-700 p-8 rounded-xl">
+            <div className="bg-background/80 backdrop-blur border border-border p-8 rounded-xl">
               <h4 className="text-xl font-semibold text-foreground mb-6">The Three Pillars of Effective Prompting</h4>
               <div className="space-y-6">
                 <div className="flex gap-4">
@@ -304,9 +272,9 @@ export default function PromptingGuideBlog() {
             </p>
 
             <div className="space-y-8 mb-8">
-              <div className="bg-blue-50 dark:bg-blue-950/20 border border-blue-200 dark:border-blue-800 p-8 rounded-xl">
-                <h4 className="text-xl font-semibold text-blue-800 dark:text-blue-200 mb-4">How AI Models Process Prompts</h4>
-                <div className="space-y-4 text-blue-700 dark:text-blue-300">
+              <div className="bg-background/80 backdrop-blur border border-border p-8 rounded-xl">
+                <h4 className="text-xl font-semibold text-foreground mb-4">How AI Models Process Prompts</h4>
+                <div className="space-y-4 text-muted-foreground">
                   <p className="leading-relaxed">
                     AI models process prompts sequentially, building understanding token by token. Early tokens in your prompt 
                     have more influence on the overall response than later ones. This is why starting with role definition 
@@ -317,7 +285,7 @@ export default function PromptingGuideBlog() {
                     of the prompt. Use this to your advantage by placing critical constraints and output format requirements 
                     at the end of your prompt.
                   </p>
-                  <div className="bg-blue-100 dark:bg-blue-900/30 p-4 rounded-lg">
+                  <div className="bg-background border border-border p-4 rounded-lg">
                     <h5 className="font-semibold mb-2">Practical Application:</h5>
                     <p className="text-sm">
                       Structure your prompts as: Role → Context → Task → Requirements → Constraints → Output Format. 
@@ -327,9 +295,9 @@ export default function PromptingGuideBlog() {
                 </div>
               </div>
 
-              <div className="bg-green-50 dark:bg-green-950/20 border border-green-200 dark:border-green-800 p-8 rounded-xl">
-                <h4 className="text-xl font-semibold text-green-800 dark:text-green-200 mb-4">Pattern Recognition and Training Biases</h4>
-                <div className="space-y-4 text-green-700 dark:text-green-300">
+              <div className="bg-primary/5 border border-primary/20 p-8 rounded-xl">
+                <h4 className="text-xl font-semibold text-foreground mb-4">Pattern Recognition and Training Biases</h4>
+                <div className="space-y-4 text-muted-foreground">
                   <p className="leading-relaxed">
                     AI models are trained on vast amounts of code and documentation, which means they have internalized 
                     common patterns and best practices. Leverage this by using terminology and structures that align 
@@ -339,7 +307,7 @@ export default function PromptingGuideBlog() {
                     However, models can also perpetuate outdated patterns or make assumptions based on their training data. 
                     Always specify when you want modern approaches or when you're deviating from common patterns.
                   </p>
-                  <div className="bg-green-100 dark:bg-green-900/30 p-4 rounded-lg">
+                  <div className="bg-primary/5 border border-primary/20 p-4 rounded-lg">
                     <h5 className="font-semibold mb-2">Example:</h5>
                     <p className="text-sm font-mono">
                       "Use modern React patterns with hooks, avoid class components. Implement using React 18 features 
@@ -349,9 +317,9 @@ export default function PromptingGuideBlog() {
                 </div>
               </div>
 
-              <div className="bg-purple-50 dark:bg-purple-950/20 border border-purple-200 dark:border-purple-800 p-8 rounded-xl">
-                <h4 className="text-xl font-semibold text-purple-800 dark:text-purple-200 mb-4">Context Window Optimization</h4>
-                <div className="space-y-4 text-purple-700 dark:text-purple-300">
+              <div className="bg-background/80 backdrop-blur border border-border p-8 rounded-xl">
+                <h4 className="text-xl font-semibold text-foreground mb-4">Context Window Optimization</h4>
+                <div className="space-y-4 text-muted-foreground">
                   <p className="leading-relaxed">
                     Every AI model has a context window limit - the maximum amount of text it can process at once. 
                     Understanding this limitation is crucial for complex prompts and long conversations.
@@ -361,7 +329,7 @@ export default function PromptingGuideBlog() {
                     while maintaining necessary context. Use techniques like context summarization and reference 
                     management to maintain coherence across multiple interactions.
                   </p>
-                  <div className="bg-purple-100 dark:bg-purple-900/30 p-4 rounded-lg">
+                  <div className="bg-background border border-border p-4 rounded-lg">
                     <h5 className="font-semibold mb-2">Context Management Strategy:</h5>
                     <ul className="text-sm space-y-1">
                       <li>• Start each new conversation with essential context</li>
@@ -378,51 +346,51 @@ export default function PromptingGuideBlog() {
               <h4 className="text-xl font-semibold text-foreground mb-4">Leveraging AI Strengths and Compensating for Weaknesses</h4>
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
-                  <h5 className="text-lg font-semibold text-green-600 mb-3">AI Strengths to Leverage:</h5>
+                  <h5 className="text-lg font-semibold text-primary mb-3">AI Strengths to Leverage:</h5>
                   <ul className="space-y-2 text-muted-foreground">
                     <li className="flex items-start gap-2">
-                      <span className="text-green-500 mt-1 font-semibold">+</span>
+                      <span className="text-primary mt-1 font-semibold">+</span>
                       <span>Pattern recognition and implementation</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <span className="text-green-500 mt-1 font-semibold">+</span>
+                      <span className="text-primary mt-1 font-semibold">+</span>
                       <span>Boilerplate and repetitive code generation</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <span className="text-green-500 mt-1 font-semibold">+</span>
+                      <span className="text-primary mt-1 font-semibold">+</span>
                       <span>Complex algorithm implementation</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <span className="text-green-500 mt-1 font-semibold">+</span>
+                      <span className="text-primary mt-1 font-semibold">+</span>
                       <span>Documentation and code explanation</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <span className="text-green-500 mt-1 font-semibold">+</span>
+                      <span className="text-primary mt-1 font-semibold">+</span>
                       <span>Multi-language code translation</span>
                     </li>
                   </ul>
                 </div>
                 <div>
-                  <h5 className="text-lg font-semibold text-red-600 mb-3">Weaknesses to Compensate For:</h5>
+                  <h5 className="text-lg font-semibold text-primary mb-3">Weaknesses to Compensate For:</h5>
                   <ul className="space-y-2 text-muted-foreground">
                     <li className="flex items-start gap-2">
-                      <span className="text-red-500 mt-1 font-semibold">-</span>
+                      <span className="text-muted-foreground mt-1 font-semibold">-</span>
                       <span>Business logic and domain-specific requirements</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <span className="text-red-500 mt-1 font-semibold">-</span>
+                      <span className="text-muted-foreground mt-1 font-semibold">-</span>
                       <span>Performance optimization without specific guidance</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <span className="text-red-500 mt-1 font-semibold">-</span>
+                      <span className="text-muted-foreground mt-1 font-semibold">-</span>
                       <span>Integration with existing codebases</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <span className="text-red-500 mt-1 font-semibold">-</span>
+                      <span className="text-muted-foreground mt-1 font-semibold">-</span>
                       <span>Security considerations and edge cases</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <span className="text-red-500 mt-1 font-semibold">-</span>
+                      <span className="text-muted-foreground mt-1 font-semibold">-</span>
                       <span>Real-time debugging and error resolution</span>
                     </li>
                   </ul>
@@ -446,62 +414,62 @@ export default function PromptingGuideBlog() {
             <div className="bg-background border border-primary/30 p-8 rounded-xl mb-8">
               <h4 className="text-xl font-semibold text-foreground mb-6">The Professional Prompt Template</h4>
               <div className="space-y-6">
-                <div className="border-l-4 border-blue-500 pl-6 py-4 bg-blue-50 dark:bg-blue-950/20 rounded-r-lg">
-                  <h5 className="font-semibold text-blue-700 dark:text-blue-300 mb-2">1. Role & Expertise Definition</h5>
-                  <p className="text-blue-600 dark:text-blue-400 text-sm mb-3">
+                <div className="border-l-4 border-primary pl-6 py-4 bg-blue-50 dark:bg-blue-950/20 rounded-r-lg">
+                  <h5 className="font-semibold text-muted-foreground mb-2">1. Role & Expertise Definition</h5>
+                  <p className="text-primary dark:text-primary text-sm mb-3">
                     Define the AI's role with specific expertise and context. This primes the model to respond from 
                     the perspective of a domain expert.
                   </p>
-                  <div className="bg-blue-100 dark:bg-blue-900/30 p-3 rounded font-mono text-sm">
+                  <div className="bg-background border border-border p-3 rounded font-mono text-sm">
                     "You are a senior full-stack developer with 8+ years of experience in React, TypeScript, and Node.js. 
                     You specialize in building scalable SaaS applications and have deep expertise in modern development patterns."
                   </div>
                 </div>
 
-                <div className="border-l-4 border-green-500 pl-6 py-4 bg-green-50 dark:bg-green-950/20 rounded-r-lg">
-                  <h5 className="font-semibold text-green-700 dark:text-green-300 mb-2">2. Context & Background</h5>
-                  <p className="text-green-600 dark:text-green-400 text-sm mb-3">
+                <div className="border-l-4 border-primary pl-6 py-4 bg-green-50 dark:bg-primary/5 rounded-r-lg">
+                  <h5 className="font-semibold text-muted-foreground mb-2">2. Context & Background</h5>
+                  <p className="text-primary dark:text-primary text-sm mb-3">
                     Provide relevant background about the project, existing codebase, and business requirements. 
                     This helps the AI understand the broader context.
                   </p>
-                  <div className="bg-green-100 dark:bg-green-900/30 p-3 rounded font-mono text-sm">
+                  <div className="bg-primary/5 border border-primary/20 p-3 rounded font-mono text-sm">
                     "I'm building a project management SaaS using Next.js 14, Prisma with PostgreSQL, and tRPC. 
                     The app has user authentication via Clerk and uses Tailwind CSS with shadcn/ui components."
                   </div>
                 </div>
 
-                <div className="border-l-4 border-yellow-500 pl-6 py-4 bg-yellow-50 dark:bg-yellow-950/20 rounded-r-lg">
-                  <h5 className="font-semibold text-yellow-700 dark:text-yellow-300 mb-2">3. Specific Task Description</h5>
-                  <p className="text-yellow-600 dark:text-yellow-400 text-sm mb-3">
+                <div className="border border-border pl-6 py-4 bg-background/80 backdrop-blur rounded-xl">
+                  <h5 className="font-semibold text-muted-foreground mb-2">3. Specific Task Description</h5>
+                  <p className="text-muted-foreground text-sm mb-3">
                     Clearly articulate what you need the AI to create, build, or solve. Be specific about functionality 
                     and expected behavior.
                   </p>
-                  <div className="bg-yellow-100 dark:bg-yellow-900/30 p-3 rounded font-mono text-sm">
+                  <div className="bg-background border border-border p-3 rounded font-mono text-sm">
                     "Create a reusable TaskCard component that displays task information, allows status updates, 
                     supports drag-and-drop functionality, and includes priority indicators with color coding."
                   </div>
                 </div>
 
-                <div className="border-l-4 border-purple-500 pl-6 py-4 bg-purple-50 dark:bg-purple-950/20 rounded-r-lg">
-                  <h5 className="font-semibold text-purple-700 dark:text-purple-300 mb-2">4. Requirements & Constraints</h5>
-                  <p className="text-purple-600 dark:text-purple-400 text-sm mb-3">
+                <div className="border border-border pl-6 py-4 bg-background/80 backdrop-blur rounded-xl">
+                  <h5 className="font-semibold text-muted-foreground mb-2">4. Requirements & Constraints</h5>
+                  <p className="text-primary dark:text-primary text-sm mb-3">
                     List technical requirements, constraints, and specific patterns to follow. Include what to avoid 
                     as well as what to include.
                   </p>
-                  <div className="bg-purple-100 dark:bg-purple-900/30 p-3 rounded font-mono text-sm">
+                  <div className="bg-background border border-border p-3 rounded font-mono text-sm">
                     "Requirements: TypeScript with strict types, accessibility compliant, mobile responsive, 
                     optimistic updates for status changes. Constraints: No external dependencies beyond what's 
                     already installed, must work with existing theme system."
                   </div>
                 </div>
 
-                <div className="border-l-4 border-red-500 pl-6 py-4 bg-red-50 dark:bg-red-950/20 rounded-r-lg">
-                  <h5 className="font-semibold text-red-700 dark:text-red-300 mb-2">5. Output Format & Examples</h5>
-                  <p className="text-red-600 dark:text-red-400 text-sm mb-3">
+                <div className="border border-border pl-6 py-4 bg-background/80 backdrop-blur rounded-xl">
+                  <h5 className="font-semibold text-muted-foreground mb-2">5. Output Format & Examples</h5>
+                  <p className="text-primary dark:text-muted-foreground text-sm mb-3">
                     Specify exactly how you want the response formatted and provide examples when possible. 
                     This ensures consistency and usability.
                   </p>
-                  <div className="bg-red-100 dark:bg-red-900/30 p-3 rounded font-mono text-sm">
+                  <div className="bg-background border border-border p-3 rounded font-mono text-sm">
                     "Provide: 1) Complete component code with TypeScript interfaces, 2) Usage example with props, 
                     3) CSS classes needed, 4) Brief explanation of key implementation decisions."
                   </div>
@@ -509,44 +477,44 @@ export default function PromptingGuideBlog() {
               </div>
             </div>
 
-            <div className="bg-red-50 dark:bg-red-950/20 border border-red-200 dark:border-red-800 p-8 rounded-xl mb-8">
-              <h4 className="text-xl font-semibold text-red-800 dark:text-red-200 mb-4">Critical Components Never to Skip</h4>
+            <div className="bg-background border border-border p-8 rounded-xl mb-8">
+              <h4 className="text-xl font-semibold text-foreground mb-4">Critical Components Never to Skip</h4>
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="space-y-4">
-                  <div className="group p-4 border border-red-300 dark:border-red-700 rounded-lg hover:bg-red-100 dark:hover:bg-red-900/20 transition-colors duration-200">
-                    <h5 className="font-semibold text-red-800 dark:text-red-200 mb-2 group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors duration-200">
+                  <div className="group p-4 border border-border rounded-lg hover:bg-primary/5 transition-colors duration-200">
+                    <h5 className="font-semibold text-foreground mb-2 group-hover:text-primary dark:group-hover:text-muted-foreground transition-colors duration-200">
                       Technology Stack Specification
                     </h5>
-                    <p className="text-red-700 dark:text-red-300 text-sm">
+                    <p className="text-muted-foreground text-sm">
                       Always specify exact technologies, frameworks, and versions. Include package managers, 
                       testing frameworks, and styling approaches.
                     </p>
                   </div>
-                  <div className="group p-4 border border-red-300 dark:border-red-700 rounded-lg hover:bg-red-100 dark:hover:bg-red-900/20 transition-colors duration-200">
-                    <h5 className="font-semibold text-red-800 dark:text-red-200 mb-2 group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors duration-200">
+                  <div className="group p-4 border border-border rounded-lg hover:bg-primary/5 transition-colors duration-200">
+                    <h5 className="font-semibold text-foreground mb-2 group-hover:text-primary dark:group-hover:text-muted-foreground transition-colors duration-200">
                       Code Style Preferences
                     </h5>
-                    <p className="text-red-700 dark:text-red-300 text-sm">
+                    <p className="text-muted-foreground text-sm">
                       Define coding patterns, naming conventions, architectural approaches, and formatting preferences. 
                       This ensures consistency with your existing codebase.
                     </p>
                   </div>
                 </div>
                 <div className="space-y-4">
-                  <div className="group p-4 border border-red-300 dark:border-red-700 rounded-lg hover:bg-red-100 dark:hover:bg-red-900/20 transition-colors duration-200">
-                    <h5 className="font-semibold text-red-800 dark:text-red-200 mb-2 group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors duration-200">
+                  <div className="group p-4 border border-border rounded-lg hover:bg-primary/5 transition-colors duration-200">
+                    <h5 className="font-semibold text-foreground mb-2 group-hover:text-primary dark:group-hover:text-muted-foreground transition-colors duration-200">
                       Error Handling Strategy
                     </h5>
-                    <p className="text-red-700 dark:text-red-300 text-sm">
+                    <p className="text-muted-foreground text-sm">
                       Specify how errors should be handled, what level of robustness you need, and how to 
                       integrate with existing error handling patterns.
                     </p>
                   </div>
-                  <div className="group p-4 border border-red-300 dark:border-red-700 rounded-lg hover:bg-red-100 dark:hover:bg-red-900/20 transition-colors duration-200">
-                    <h5 className="font-semibold text-red-800 dark:text-red-200 mb-2 group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors duration-200">
+                  <div className="group p-4 border border-border rounded-lg hover:bg-primary/5 transition-colors duration-200">
+                    <h5 className="font-semibold text-foreground mb-2 group-hover:text-primary dark:group-hover:text-muted-foreground transition-colors duration-200">
                       Performance Requirements
                     </h5>
-                    <p className="text-red-700 dark:text-red-300 text-sm">
+                    <p className="text-muted-foreground text-sm">
                       Include performance expectations, optimization priorities, and any specific metrics 
                       or constraints that need to be considered.
                     </p>
@@ -555,7 +523,7 @@ export default function PromptingGuideBlog() {
               </div>
             </div>
 
-            <div className="bg-gray-50 dark:bg-gray-900/50 border border-gray-200 dark:border-gray-700 p-8 rounded-xl">
+            <div className="bg-background/80 backdrop-blur border border-border p-8 rounded-xl">
               <h4 className="text-xl font-semibold text-foreground mb-4">Advanced Prompt Structuring Techniques</h4>
               <div className="space-y-6">
                 <div className="border-l-4 border-primary pl-6">
@@ -734,8 +702,8 @@ export default function PromptingGuideBlog() {
                 <div className="bg-muted/30 p-6 rounded-lg">
                   <h5 className="font-semibold text-foreground mb-4">Master-Level Prompt Structure</h5>
                   <div className="space-y-4 font-mono text-sm">
-                    <div className="p-4 bg-blue-50 dark:bg-blue-950/20 border-l-4 border-blue-500 rounded-r">
-                      <div className="text-blue-600 dark:text-blue-400 font-semibold mb-2">ROLE & EXPERTISE</div>
+                    <div className="p-4 bg-blue-50 dark:bg-blue-950/20 border-l-4 border-primary rounded-r">
+                      <div className="text-primary dark:text-primary font-semibold mb-2">ROLE & EXPERTISE</div>
                       <div className="text-muted-foreground">
                         You are a senior React architect with expertise in modern React patterns, TypeScript, 
                         and component design systems. You specialize in building reusable, accessible, and 
@@ -743,16 +711,16 @@ export default function PromptingGuideBlog() {
                       </div>
                     </div>
                     
-                    <div className="p-4 bg-green-50 dark:bg-green-950/20 border-l-4 border-green-500 rounded-r">
-                      <div className="text-green-600 dark:text-green-400 font-semibold mb-2">PROJECT CONTEXT</div>
+                    <div className="p-4 bg-green-50 dark:bg-primary/5 border-l-4 border-primary rounded-r">
+                      <div className="text-primary dark:text-primary font-semibold mb-2">PROJECT CONTEXT</div>
                       <div className="text-muted-foreground">
                         Building a project management SaaS with Next.js 14, TypeScript, Tailwind CSS, and shadcn/ui. 
                         The app uses React 18 with concurrent features, tRPC for API layer, and Zustand for state management.
                       </div>
                     </div>
                     
-                    <div className="p-4 bg-yellow-50 dark:bg-yellow-950/20 border-l-4 border-yellow-500 rounded-r">
-                      <div className="text-yellow-600 dark:text-yellow-400 font-semibold mb-2">SPECIFIC TASK</div>
+                    <div className="p-4 bg-background/80 backdrop-blur border border-border rounded-xl">
+                      <div className="text-muted-foreground font-semibold mb-2">SPECIFIC TASK</div>
                       <div className="text-muted-foreground">
                         Create a reusable SearchInput component with these exact specifications:
                         <br />• Debounced search with configurable delay (default 300ms)
@@ -765,8 +733,8 @@ export default function PromptingGuideBlog() {
                       </div>
                     </div>
                     
-                    <div className="p-4 bg-purple-50 dark:bg-purple-950/20 border-l-4 border-purple-500 rounded-r">
-                      <div className="text-purple-600 dark:text-purple-400 font-semibold mb-2">TECHNICAL REQUIREMENTS</div>
+                    <div className="p-4 bg-background/80 backdrop-blur border border-border rounded-xl">
+                      <div className="text-primary dark:text-primary font-semibold mb-2">TECHNICAL REQUIREMENTS</div>
                       <div className="text-muted-foreground">
                         • TypeScript with strict mode enabled
                         <br />• forwardRef for ref compatibility
@@ -778,8 +746,8 @@ export default function PromptingGuideBlog() {
                       </div>
                     </div>
                     
-                    <div className="p-4 bg-red-50 dark:bg-red-950/20 border-l-4 border-red-500 rounded-r">
-                      <div className="text-red-600 dark:text-red-400 font-semibold mb-2">OUTPUT REQUIREMENTS</div>
+                    <div className="p-4 bg-background/80 backdrop-blur border border-border rounded-xl">
+                      <div className="text-primary dark:text-muted-foreground font-semibold mb-2">OUTPUT REQUIREMENTS</div>
                       <div className="text-muted-foreground">
                         Provide:
                         <br />1. Complete component code with TypeScript interfaces
@@ -793,9 +761,9 @@ export default function PromptingGuideBlog() {
                   </div>
                 </div>
                 
-                <div className="bg-green-50 dark:bg-green-950/20 border border-green-200 dark:border-green-800 p-4 rounded-lg">
-                  <h5 className="font-semibold text-green-800 dark:text-green-200 mb-2">Why This Prompt Works</h5>
-                  <ul className="space-y-1 text-green-700 dark:text-green-300 text-sm">
+                <div className="bg-primary/5 border border-primary/20 p-4 rounded-lg">
+                  <h5 className="font-semibold text-foreground mb-2">Why This Prompt Works</h5>
+                  <ul className="space-y-1 text-muted-foreground text-sm">
                     <li>• Establishes expert context and specialization</li>
                     <li>• Provides complete technical environment details</li>
                     <li>• Specifies exact functionality with behavioral requirements</li>
@@ -861,17 +829,17 @@ export default function PromptingGuideBlog() {
                 <div className="p-6">
                   <div className="bg-muted/30 p-6 rounded-lg font-mono text-sm overflow-x-auto">
                     <div className="space-y-4 text-muted-foreground leading-relaxed">
-                      <div><span className="text-blue-400">[ROLE]</span> You are a senior full-stack engineer with expertise in [TECH_STACK]</div>
-                      <div><span className="text-green-400">[CONTEXT]</span> I'm building [PROJECT_DESCRIPTION] using [SPECIFIC_TECHNOLOGIES]</div>
-                      <div><span className="text-yellow-400">[TASK]</span> Implement [FEATURE_NAME] with the following requirements:</div>
+                      <div><span className="text-primary">[ROLE]</span> You are a senior full-stack engineer with expertise in [TECH_STACK]</div>
+                      <div><span className="text-primary">[CONTEXT]</span> I'm building [PROJECT_DESCRIPTION] using [SPECIFIC_TECHNOLOGIES]</div>
+                      <div><span className="text-primary">[TASK]</span> Implement [FEATURE_NAME] with the following requirements:</div>
                       <div className="ml-4">
                         • Frontend: [UI_REQUIREMENTS]<br/>
                         • Backend: [API_REQUIREMENTS]<br/>
                         • Database: [DATA_REQUIREMENTS]<br/>
                         • Business Logic: [LOGIC_REQUIREMENTS]
                       </div>
-                      <div><span className="text-purple-400">[CONSTRAINTS]</span> Must follow [PATTERNS], integrate with [EXISTING_SYSTEMS]</div>
-                      <div><span className="text-red-400">[OUTPUT]</span> Provide: component code, API endpoints, database schema, tests</div>
+                      <div><span className="text-primary">[CONSTRAINTS]</span> Must follow [PATTERNS], integrate with [EXISTING_SYSTEMS]</div>
+                      <div><span className="text-muted-foreground">[OUTPUT]</span> Provide: component code, API endpoints, database schema, tests</div>
                     </div>
                   </div>
                 </div>
@@ -884,9 +852,9 @@ export default function PromptingGuideBlog() {
                 <div className="p-6">
                   <div className="bg-muted/30 p-6 rounded-lg font-mono text-sm overflow-x-auto">
                     <div className="space-y-4 text-muted-foreground leading-relaxed">
-                      <div><span className="text-blue-400">[ROLE]</span> You are a backend architect specializing in [API_TYPE] design</div>
-                      <div><span className="text-green-400">[CONTEXT]</span> Building [SERVICE_TYPE] for [DOMAIN] with [SCALE_REQUIREMENTS]</div>
-                      <div><span className="text-yellow-400">[TASK]</span> Design and implement [ENDPOINT_NAME] that:</div>
+                      <div><span className="text-primary">[ROLE]</span> You are a backend architect specializing in [API_TYPE] design</div>
+                      <div><span className="text-primary">[CONTEXT]</span> Building [SERVICE_TYPE] for [DOMAIN] with [SCALE_REQUIREMENTS]</div>
+                      <div><span className="text-primary">[TASK]</span> Design and implement [ENDPOINT_NAME] that:</div>
                       <div className="ml-4">
                         • Accepts: [INPUT_SPECIFICATION]<br/>
                         • Returns: [OUTPUT_SPECIFICATION]<br/>
@@ -894,8 +862,8 @@ export default function PromptingGuideBlog() {
                         • Validates: [VALIDATION_RULES]<br/>
                         • Errors: [ERROR_SCENARIOS]
                       </div>
-                      <div><span className="text-purple-400">[REQUIREMENTS]</span> [PERFORMANCE], [SECURITY], [DOCUMENTATION]</div>
-                      <div><span className="text-red-400">[OUTPUT]</span> API specification, implementation, tests, documentation</div>
+                      <div><span className="text-primary">[REQUIREMENTS]</span> [PERFORMANCE], [SECURITY], [DOCUMENTATION]</div>
+                      <div><span className="text-muted-foreground">[OUTPUT]</span> API specification, implementation, tests, documentation</div>
                     </div>
                   </div>
                 </div>
@@ -908,9 +876,9 @@ export default function PromptingGuideBlog() {
                 <div className="p-6">
                   <div className="bg-muted/30 p-6 rounded-lg font-mono text-sm overflow-x-auto">
                     <div className="space-y-4 text-muted-foreground leading-relaxed">
-                      <div><span className="text-blue-400">[ROLE]</span> You are a design system engineer with expertise in [FRAMEWORK]</div>
-                      <div><span className="text-green-400">[CONTEXT]</span> Building reusable components for [DESIGN_SYSTEM] used across [APPLICATIONS]</div>
-                      <div><span className="text-yellow-400">[TASK]</span> Create [COMPONENT_NAME] component with:</div>
+                      <div><span className="text-primary">[ROLE]</span> You are a design system engineer with expertise in [FRAMEWORK]</div>
+                      <div><span className="text-primary">[CONTEXT]</span> Building reusable components for [DESIGN_SYSTEM] used across [APPLICATIONS]</div>
+                      <div><span className="text-primary">[TASK]</span> Create [COMPONENT_NAME] component with:</div>
                       <div className="ml-4">
                         • Variants: [DESIGN_VARIANTS]<br/>
                         • Props: [PROP_INTERFACE]<br/>
@@ -918,8 +886,8 @@ export default function PromptingGuideBlog() {
                         • Accessibility: [A11Y_REQUIREMENTS]<br/>
                         • Responsive: [BREAKPOINT_BEHAVIOR]
                       </div>
-                      <div><span className="text-purple-400">[STANDARDS]</span> Follow [DESIGN_TOKENS], [CODING_STANDARDS], [TESTING_PATTERNS]</div>
-                      <div><span className="text-red-400">[DELIVERABLES]</span> Component, Storybook stories, tests, documentation, usage guidelines</div>
+                      <div><span className="text-primary">[STANDARDS]</span> Follow [DESIGN_TOKENS], [CODING_STANDARDS], [TESTING_PATTERNS]</div>
+                      <div><span className="text-muted-foreground">[DELIVERABLES]</span> Component, Storybook stories, tests, documentation, usage guidelines</div>
                     </div>
                   </div>
                 </div>
@@ -952,28 +920,28 @@ export default function PromptingGuideBlog() {
               </div>
 
               <div className="grid md:grid-cols-3 gap-6">
-                <div className="text-center p-8 bg-green-50 dark:bg-green-950/20 border border-green-200 dark:border-green-800 rounded-xl group hover:border-green-300 dark:hover:border-green-700 transition-colors duration-200">
-                  <div className="text-4xl mb-4 group-hover:text-green-600 transition-colors duration-200">🎯</div>
+                <div className="text-center p-8 bg-primary/5 border border-primary/20 rounded-xl group hover:border-primary/30 transition-colors duration-200">
+                  <div className="text-4xl mb-4 group-hover:text-primary transition-colors duration-200">🎯</div>
                   <h4 className="text-lg font-semibold text-foreground mb-3">Practice Daily</h4>
-                  <p className="text-sm text-green-700 dark:text-green-300 leading-relaxed">
+                  <p className="text-sm text-muted-foreground leading-relaxed">
                     Apply these techniques to real projects daily. Mastery comes through consistent application 
                     and refinement of your approach.
                   </p>
                 </div>
                 
-                <div className="text-center p-8 bg-blue-50 dark:bg-blue-950/20 border border-blue-200 dark:border-blue-800 rounded-xl group hover:border-blue-300 dark:hover:border-blue-700 transition-colors duration-200">
-                  <div className="text-4xl mb-4 group-hover:text-blue-600 transition-colors duration-200">🔄</div>
+                <div className="text-center p-8 bg-background/80 backdrop-blur border border-border rounded-xl group hover:border-primary/30 transition-colors duration-200">
+                  <div className="text-4xl mb-4 group-hover:text-primary transition-colors duration-200">🔄</div>
                   <h4 className="text-lg font-semibold text-foreground mb-3">Iterate Relentlessly</h4>
-                  <p className="text-sm text-blue-700 dark:text-blue-300 leading-relaxed">
+                  <p className="text-sm text-muted-foreground leading-relaxed">
                     Perfect prompts are refined through multiple iterations. Don't settle for "good enough" when 
                     excellence is achievable through refinement.
                   </p>
                 </div>
                 
-                <div className="text-center p-8 bg-purple-50 dark:bg-purple-950/20 border border-purple-200 dark:border-purple-800 rounded-xl group hover:border-purple-300 dark:hover:border-purple-700 transition-colors duration-200">
-                  <div className="text-4xl mb-4 group-hover:text-purple-600 transition-colors duration-200">📚</div>
+                <div className="text-center p-8 bg-background/80 backdrop-blur border border-border rounded-xl group hover:border-primary/30 transition-colors duration-200">
+                  <div className="text-4xl mb-4 group-hover:text-primary transition-colors duration-200">📚</div>
                   <h4 className="text-lg font-semibold text-foreground mb-3">Stay Current</h4>
-                  <p className="text-sm text-purple-700 dark:text-purple-300 leading-relaxed">
+                  <p className="text-sm text-muted-foreground leading-relaxed">
                     AI capabilities evolve rapidly. Adapt your techniques as new models and features emerge, 
                     always testing and validating new approaches.
                   </p>

@@ -13,7 +13,7 @@ import { useTRPC } from "@/trpc/client";
 import { Button } from "@/components/ui/button";
 import { Form, FormField } from "@/components/ui/form";
 import { useRouter } from "next/navigation";
-import { useClerk, useAuth } from "@clerk/nextjs";
+import { useClerk, useAuth } from '@/lib/mock-clerk';
 import { SiOpenai } from "react-icons/si";
 import { FcGoogle } from "react-icons/fc";
 import { PoweredBy } from "./prompt-su";

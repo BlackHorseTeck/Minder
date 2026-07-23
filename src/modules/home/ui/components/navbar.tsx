@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { SignedIn, SignedOut, SignUpButton } from "@clerk/nextjs";
+import { SignedIn, SignedOut, SignUpButton } from "@/lib/mock-clerk";
 import { cn } from "@/lib/utils";
 import { UserControl } from "@/components/user-control";
 import { useScroll } from "@/hooks/use-scroll";

@@ -1,4 +1,4 @@
-import { UserButton, auth } from "@clerk/nextjs";
+import { UserButton, auth } from '@/lib/mock-clerk';
 import { MainNav } from "@/components/layout/main-nav";
 import { StoreSwitcher } from "@/components/layout/store-switcher";
 import { redirect } from "next/navigation";

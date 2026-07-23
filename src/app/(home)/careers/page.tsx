@@ -102,7 +102,7 @@ export default function HiringPage() {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="flex flex-col max-w-5xl mx-auto w-full px-6 py-[10vh]">
       <div className="max-w-6xl mx-auto px-8 py-12">
         {/* Hero Section */}
         <div className="text-center mb-20">
@@ -171,7 +171,7 @@ export default function HiringPage() {
 
         {/* How to Apply */}
         <div className="text-center max-w-2xl mx-auto">
-          <div className="bg-gradient-to-r from-primary/10 to-primary/5 border border-primary/20 p-8 rounded-2xl">
+          <div className="bg-primary/5 border border-primary/20 rounded-xl p-10 text-center mb-16">
             <h3 className="text-2xl font-semibold text-foreground mb-4">
               Ready to Apply?
             </h3>
