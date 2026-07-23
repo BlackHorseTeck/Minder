@@ -1,6 +1,5 @@
 "use client";
 
-import { Navbar } from "@/modules/home/ui/components/navbar";
 import { Bolt, Shield, Rocket, Users } from "lucide-react";
 
 const features = [
@@ -28,10 +27,7 @@ const features = [
 
 export default function FeaturesPage() {
   return (
-    <>
-      <Navbar />
-
-      <main className="pt-[16vh] px-4 md:px-12 max-w-6xl mx-auto flex flex-col gap-12">
+    <main className="pt-[16vh] px-4 md:px-12 max-w-6xl mx-auto flex flex-col gap-12">
         <section className="text-center space-y-4">
           <h1 className="text-4xl md:text-5xl font-bold text-foreground">
             Features
@@ -57,7 +53,6 @@ export default function FeaturesPage() {
             </div>
           ))}
         </section>
-      </main>
-    </>
+    </main>
   );
 }

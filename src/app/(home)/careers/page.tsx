@@ -1,8 +1,6 @@
 "use client";
 
-import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
-import { useTheme } from "next-themes";
 import { X } from "lucide-react";
 
 interface Role {
@@ -84,8 +82,6 @@ const roles: Role[] = [
 ];
 
 export default function HiringPage() {
-  const router = useRouter();
-  const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
   const [selectedRole, setSelectedRole] = useState<Role | null>(null);
 
@@ -108,25 +104,6 @@ export default function HiringPage() {
   return (
     <div className="min-h-screen bg-background">
       <div className="max-w-6xl mx-auto px-8 py-12">
-        {/* Header */}
-        <div className="flex items-center justify-between mb-16">
-          <button
-            onClick={() => router.back()}
-            className="group relative text-muted-foreground hover:text-foreground transition-colors duration-200"
-          >
-            ← Back to Home
-            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-foreground group-hover:w-full transition-all duration-300 ease-out"></span>
-          </button>
-          
-          <button
-            onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-            className="group relative text-muted-foreground hover:text-foreground transition-colors duration-200"
-          >
-            {theme === 'dark' ? 'Light Mode' : 'Dark Mode'}
-            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-foreground group-hover:w-full transition-all duration-300 ease-out"></span>
-          </button>
-        </div>
-
         {/* Hero Section */}
         <div className="text-center mb-20">
           <h1 className="text-5xl font-semibold text-foreground mb-6 leading-tight">

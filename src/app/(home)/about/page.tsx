@@ -1,15 +1,12 @@
 "use client";
 
-import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
-import { useTheme } from "next-themes";
+import Link from "next/link";
 import { CiMail } from "react-icons/ci";
 import { FaGithub, FaXTwitter, FaLinkedin, FaKaggle, FaYoutube, FaSpotify, FaMedium } from "react-icons/fa6";
 import { SiLeetcode } from "react-icons/si";
 
 const Page = () => {
-  const router = useRouter();
-  const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
   const [hoveredSocial, setHoveredSocial] = useState<string | null>(null);
 
@@ -30,38 +27,13 @@ const Page = () => {
   return (
     <div className="min-h-screen bg-background">
       <div className="max-w-4xl mx-auto px-8 py-16">
-        {/* Header */}
-        <div className="flex items-center justify-between mb-16">
-          <button
-            onClick={() => router.back()}
-            className="group relative text-muted-foreground hover:text-foreground transition-colors duration-200"
-          >
-            ← Back
-            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-foreground group-hover:w-full transition-all duration-300 ease-out"></span>
-          </button>
-          
-          <button
-            onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-            className="group relative text-muted-foreground hover:text-foreground transition-colors duration-200"
-          >
-            {theme === 'dark' ? 'Light Mode' : 'Dark Mode'}
-            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-foreground group-hover:w-full transition-all duration-300 ease-out"></span>
-          </button>
-        </div>
-
         {/* Main Content */}
         <div className="bg-background border border-border rounded-2xl p-12 shadow-lg">
           {/* Brand Section */}
           <div className="mb-12">
-            <button
-              onClick={() => router.push("/")}
-              className="group relative inline-block"
-            >
-              <h1 className="text-4xl font-semibold text-foreground group-hover:text-primary transition-colors duration-300">
+            <h1 className="text-4xl font-semibold text-foreground">
                 Minder
               </h1>
-              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-500 ease-out"></span>
-            </button>
             <p className="text-muted-foreground mt-2 text-lg">Building the future, one line at a time</p>
           </div>
 
@@ -134,12 +106,12 @@ const Page = () => {
               <p className="text-muted-foreground mb-4">
                 Ready to see what's possible?
               </p>
-              <button
-                onClick={() => router.push("/")}
+              <Link
+                href="/"
                 className="group relative bg-primary text-primary-foreground px-8 py-3 rounded-xl font-semibold hover:bg-primary/90 transition-all duration-300 hover:shadow-lg hover:shadow-primary/25 hover:-translate-y-0.5"
               >
                 Explore Minder
-              </button>
+              </Link>
             </div>
           </div>
         </div>

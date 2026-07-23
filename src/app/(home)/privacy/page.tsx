@@ -1,12 +1,9 @@
 "use client";
 
-import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
-import { useTheme } from "next-themes";
+import Link from "next/link";
 
 export default function PrivacyPage() {
-  const router = useRouter();
-  const { theme, setTheme } = useTheme();
   const [activeSection, setActiveSection] = useState<string>("");
   const [mounted, setMounted] = useState(false);
 
@@ -32,37 +29,14 @@ export default function PrivacyPage() {
       <div className="max-w-7xl mx-auto px-8 py-12">
         {/* Header */}
         <div className="flex items-center justify-between mb-12">
-          <div className="flex items-center gap-6">
-            <button
-              onClick={() => router.back()}
-              className="group relative text-muted-foreground hover:text-foreground transition-colors duration-200"
-            >
-              ← Back
-              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-foreground group-hover:w-full transition-all duration-300 ease-out"></span>
-            </button>
-            
-            <div>
-              <h1 className="text-2xl font-semibold text-foreground mb-2">Privacy Policy</h1>
-            </div>
-          </div>
-
-          <div className="flex items-center gap-6">
-            <button
-              onClick={() => router.push("/terms")}
-              className="group relative text-muted-foreground hover:text-foreground transition-colors duration-200"
-            >
-              Terms of Service →
-              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-foreground group-hover:w-full transition-all duration-300 ease-out"></span>
-            </button>
-            
-            <button
-              onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-              className="group relative text-muted-foreground hover:text-foreground transition-colors duration-200"
-            >
-              {theme === 'dark' ? 'Light Mode' : 'Dark Mode'}
-              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-foreground group-hover:w-full transition-all duration-300 ease-out"></span>
-            </button>
-          </div>
+          <h1 className="text-2xl font-semibold text-foreground">Privacy Policy</h1>
+          <Link
+            href="/terms"
+            className="group relative text-muted-foreground hover:text-foreground transition-colors duration-200"
+          >
+            Terms of Service →
+            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-foreground group-hover:w-full transition-all duration-300 ease-out"></span>
+          </Link>
         </div>
 
         <div className="flex gap-12">

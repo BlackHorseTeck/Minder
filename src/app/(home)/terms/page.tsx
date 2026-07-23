@@ -1,14 +1,11 @@
 "use client";
 
-import { useRouter } from "next/navigation";
-import { ArrowLeft, Calendar, ArrowRight } from "lucide-react";
+import { Calendar } from "lucide-react";
 import { useState } from "react";
-import { useTheme } from "next-themes";
+import Link from "next/link";
 
 export default function TermsPage() {
-  const router = useRouter();
   const [activeSection, setActiveSection] = useState<string>("");
-  const { theme, setTheme } = useTheme();
 
   const sections = [
     { id: "acceptance", title: "Acceptance of Terms" },
@@ -34,38 +31,15 @@ export default function TermsPage() {
       <div className="max-w-7xl mx-auto px-8 py-12">
         {/* Header */}
         <div className="flex items-center justify-between mb-8">
-  <div className="flex items-center gap-6">
-    <button
-      onClick={() => router.back()}
-      className="group relative text-muted-foreground hover:text-foreground transition-colors duration-200"
-    >
-      ← Back
-      <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-foreground group-hover:w-full transition-all duration-300 ease-out"></span>
-    </button>
-    
-    <div>
-      <h1 className="text-2xl font-semibold text-foreground">Terms of Service</h1>
-    </div>
-  </div>
-
-  <div className="flex items-center gap-6">
-    <button
-      onClick={() => router.push("/privacy")}
-      className="group relative text-muted-foreground hover:text-foreground transition-colors duration-200"
-    >
-      Privacy Policy →
-      <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-foreground group-hover:w-full transition-all duration-300 ease-out"></span>
-    </button>
-    
-    <button
-      onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-      className="group relative text-muted-foreground hover:text-foreground transition-colors duration-200"
-    >
-      {theme === 'dark' ? 'Light Mode' : 'Dark Mode'}
-      <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-foreground group-hover:w-full transition-all duration-300 ease-out"></span>
-    </button>
-  </div>
-</div>
+          <h1 className="text-2xl font-semibold text-foreground">Terms of Service</h1>
+          <Link
+            href="/privacy"
+            className="group relative text-muted-foreground hover:text-foreground transition-colors duration-200"
+          >
+            Privacy Policy →
+            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-foreground group-hover:w-full transition-all duration-300 ease-out"></span>
+          </Link>
+        </div>
 
 
         <div className="flex gap-12">

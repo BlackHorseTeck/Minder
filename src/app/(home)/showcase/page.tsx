@@ -1,12 +1,8 @@
 "use client";
 
-import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
-import { useTheme } from "next-themes";
 
 export default function ShowcasePage() {
-  const router = useRouter();
-  const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
   const [email, setEmail] = useState("");
   const [isSubscribed, setIsSubscribed] = useState(false);
@@ -61,25 +57,6 @@ export default function ShowcasePage() {
       </div>
 
       <div className="relative z-10 max-w-6xl mx-auto px-8 py-12 min-h-screen flex flex-col">
-        {/* Header */}
-        <div className="flex items-center justify-between mb-16">
-          <button
-            onClick={() => router.push("/")}
-            className="group relative text-muted-foreground hover:text-foreground transition-colors duration-200"
-          >
-            ← Back to Reality
-            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-foreground group-hover:w-full transition-all duration-300 ease-out"></span>
-          </button>
-          
-          <button
-            onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-            className="group relative text-muted-foreground hover:text-foreground transition-colors duration-200"
-          >
-            {theme === 'dark' ? 'Light Mode' : 'Dark Mode'}
-            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-foreground group-hover:w-full transition-all duration-300 ease-out"></span>
-          </button>
-        </div>
-
         {/* Main Content */}
         <div className="flex-1 flex items-center justify-center">
           <div className="text-center max-w-4xl mx-auto">
