@@ -6,9 +6,7 @@ import { useState } from "react";
 import { 
   FaGithub, 
   FaLinkedin, 
-  FaXTwitter, 
-  FaYoutube, 
-  FaSpotify 
+  FaXTwitter
 } from "react-icons/fa6";
 
 export const Footer = () => {
@@ -18,33 +16,22 @@ export const Footer = () => {
     {
       name: "GitHub",
       icon: FaGithub,
-      href: "https://github.com/vedantxn",
+      href: "https://github.com/BlackHorseTeck",
       color: "hover:text-gray-900 dark:hover:text-gray-100"
     },
     {
       name: "LinkedIn",
       icon: FaLinkedin,
-      href: "https://linkedin.com/in/vedantxn",
+      href: "https://www.linkedin.com/company/bahia-llm-works",
       color: "hover:text-blue-600"
     },
     {
       name: "X",
       icon: FaXTwitter,
-      href: "https://x.com/vedantxn",
+      href: "https://x.com/BlackhorseTeck",
       color: "hover:text-gray-900 dark:hover:text-gray-100"
     },
-    {
-      name: "YouTube",
-      icon: FaYoutube,
-      href: "https://youtube.com/@vedthetank",
-      color: "hover:text-red-600"
-    },
-    {
-      name: "Spotify",
-      icon: FaSpotify,
-      href: "https://spotify.com/vedantxn",
-      color: "hover:text-green-500"
-    }
+
   ];
 
   return (

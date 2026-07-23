@@ -206,7 +206,7 @@ export default function PrivacyPage() {
                       </li>
                     </ul>
                   </div>
-                  <p>To exercise these rights, contact us at privacy@nextly.live</p>
+                  <p>To exercise these rights, contact us at blackhorse.lines@gmail.com</p>
                 </div>
               </section>
 
@@ -236,10 +236,10 @@ export default function PrivacyPage() {
                   <div className="border-l-4 border-primary pl-4 py-3">
                     <div className="space-y-2">
                       <div className="border-l-2 border-muted pl-3">
-                        <span className="font-semibold">Email:</span> privacy@nextly.live
+                        <span className="font-semibold">Email:</span> blackhorse.lines@gmail.com
                       </div>
                       <div className="border-l-2 border-muted pl-3">
-                        <span className="font-semibold">Data Protection Officer:</span> vedant@nextly.live
+                        <span className="font-semibold">Data Protection Officer:</span> blackhorse.lines@gmail.com
                       </div>
                     </div>
                   </div>

@@ -246,7 +246,7 @@ const PricingSection = () => {
             All plans include community access and regular updates
           </p>
           <p className="text-sm text-foreground/60">
-            Need something custom? <a href="mailto:vedant@nextly.live" target="_blank" rel="noopener noreferrer"><span className="text-primary cursor-pointer hover:underline">Contact sales</span></a>
+            Need something custom? <a href="mailto:blackhorse.lines@gmail.com" target="_blank" rel="noopener noreferrer"><span className="text-primary cursor-pointer hover:underline">Contact sales</span></a>
           </p>
         </div>
       </section>

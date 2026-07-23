@@ -180,7 +180,7 @@ export default function HiringPage() {
               the genius we're looking for. Show us what you've built, not where you studied.
             </p>
             <a
-              href="mailto:vedant@nextly.live?subject=Application for [Role Name]"
+              href="mailto:blackhorse.lines@gmail.com?subject=Application for [Role Name]"
               className="inline-flex items-center gap-3 bg-primary text-primary-foreground px-8 py-4 rounded-xl font-semibold hover:bg-primary/90 transition-all duration-300 hover:shadow-lg hover:shadow-primary/25 hover:-translate-y-0.5"
             >
               Send Your Application
@@ -277,7 +277,7 @@ export default function HiringPage() {
                   Send your resume and portfolio to get started
                 </p>
                 <a
-                  href={`mailto:vedant@nextly.live?subject=Application for ${selectedRole.title}&body=Hi Vedant,%0D%0A%0D%0AI'm interested in the ${selectedRole.title} position at Nextly.%0D%0A%0D%0A[Tell us about yourself and why you're perfect for this role]%0D%0A%0D%0ABest regards`}
+                  href={`mailto:blackhorse.lines@gmail.com?subject=Application for ${selectedRole.title}&body=Hi Vedant,%0D%0A%0D%0AI'm interested in the ${selectedRole.title} position at Minder.%0D%0A%0D%0A[Tell us about yourself and why you're perfect for this role]%0D%0A%0D%0ABest regards`}
                   className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-xl font-semibold hover:bg-primary/90 transition-colors duration-200"
                 >
                   Apply Now

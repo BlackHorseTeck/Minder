@@ -35,7 +35,7 @@ const Page = () => {
     <div className="flex flex-col max-w-5xl mx-auto w-full bg-transparent">
       <section className="space-y-6 py-[16vh] 2xl:py-48">
         <div className="flex flex-col items-center">
-          <a href="https://github.com/vedantxn/nextly" target="_blank" rel="noopener noreferrer">
+          <a href="https://github.com/BlackHorseTeck/minder" target="_blank" rel="noopener noreferrer">
             <Announcement className="hover:bg-primary hover:text-primary-foreground">
               <AnnouncementTitle>
               🌟 Give us a star on GitHub

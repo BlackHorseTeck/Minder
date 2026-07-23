@@ -3,8 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { CiMail } from "react-icons/ci";
-import { FaGithub, FaXTwitter, FaLinkedin, FaKaggle, FaYoutube, FaSpotify, FaMedium } from "react-icons/fa6";
-import { SiLeetcode } from "react-icons/si";
+import { FaGithub, FaXTwitter, FaLinkedin } from "react-icons/fa6";
 
 const Page = () => {
   const [mounted, setMounted] = useState(false);
@@ -16,9 +15,9 @@ const Page = () => {
 
   const socialLinks = [
     { name: "Email", icon: CiMail, href: "mailto:blackhorse.lines@gmail.com", color: "hover:text-primary" },
-    { name: "GitHub", icon: FaGithub, href: "https://github.com/blackhorseteck", color: "hover:text-gray-900 dark:hover:text-gray-100" },
-    { name: "X", icon: FaXTwitter, href: "https://x.com/vedantxn", color: "hover:text-gray-900 dark:hover:text-gray-100" },
-    { name: "LinkedIn", icon: FaLinkedin, href: "https://linkedin.com/in/vedantxn", color: "hover:text-primary" },
+    { name: "GitHub", icon: FaGithub, href: "https://github.com/BlackHorseTeck", color: "hover:text-gray-900 dark:hover:text-gray-100" },
+    { name: "X", icon: FaXTwitter, href: "https://x.com/BlackhorseTeck", color: "hover:text-gray-900 dark:hover:text-gray-100" },
+    { name: "LinkedIn", icon: FaLinkedin, href: "https://www.linkedin.com/company/bahia-llm-works", color: "hover:text-primary" },
 
   ];
 

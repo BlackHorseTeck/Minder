@@ -61,7 +61,7 @@ export const Navbar = () => {
     {
       title: "Support",
       href: "/support",
-      description: "vedantxn@gmail.com",
+      description: "blackhorse.lines@gmail.com",
     },
   ];
 
@@ -156,7 +156,7 @@ export const Navbar = () => {
 
           {/* GitHub Icon */}
           <a
-            href="https://github.com/vedantxn/nextly"
+            href="https://github.com/BlackHorseTeck/minder"
             target="_blank"
             rel="noopener noreferrer"
             className="relative group flex items-center justify-center p-1.5 rounded-full hover:bg-primary/10 transition-all duration-300"

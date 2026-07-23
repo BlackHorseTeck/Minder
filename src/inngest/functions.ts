@@ -40,7 +40,7 @@ export const codeAgentFunction = inngest.createFunction(
     // }
     
     const sandboxId = await step.run("get-sandbox-id", async () => {
-      const sandbox = await Sandbox.create("vedant-lovable-test-1");
+      const sandbox = await Sandbox.create("minder-sandbox");
       await sandbox.setTimeout(SANDBOX_TIMEOUT);
       return sandbox.sandboxId;
     });

@@ -4,7 +4,7 @@
   
   AI-powered Next.js application generator that transforms natural language prompts into production-ready code. From concept to deployment, skip the boilerplate and focus on what makes your project unique.
 
-  [Watch Demo 🚀](https://nextly.live) | [X](https://x.com/vedantxn) | [LinkedIn](https://linkedin.com/in/vedantxn)
+  [Watch Demo 🚀](https://minder.app) | [X](https://x.com/BlackhorseTeck) | [LinkedIn](https://www.linkedin.com/company/bahia-llm-works)
 </div>
 
 
@@ -142,8 +142,8 @@ Design a detailed product page for a sneaker store. Left side should have an ima
 **Clone the Repository**
 
 ```
-git clone https://github.com/yourusername/nextly.git
-cd nextly
+git clone https://github.com/BlackHorseTeck/Minder.git
+cd minder
 ```
 
 **Install Dependencies**
@@ -160,7 +160,7 @@ pnpm install
 Create a `.env` file in the root directory:
 
 ```
-DATABASE_URL="postgresql://user:password@localhost:5432/nextly"
+DATABASE_URL="postgresql://user:password@localhost:5432/minder"
 CLERK_SECRET_KEY="your_clerk_secret_key"
 NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY="your_clerk_publishable_key"
 GROK_API_KEY="your_grok_api_key"

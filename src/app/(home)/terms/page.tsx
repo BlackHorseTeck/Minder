@@ -535,8 +535,8 @@ export default function TermsPage() {
                   <div className="bg-primary/5 border border-primary/20 p-6 rounded-xl">
                     <h4 className="font-semibold text-foreground mb-3">Contact Details:</h4>
                     <div className="space-y-2">
-                      <p><strong>Email:</strong> legal@nextly.live</p>
-                      <p><strong>Support:</strong> vedant@nextly.live</p>
+                      <p><strong>Email:</strong> blackhorse.lines@gmail.com</p>
+                      <p><strong>Support:</strong> blackhorse.lines@gmail.com</p>
                       <p><strong>Business Hours:</strong> Monday - Friday, 9:00 AM - 5:00 PM UTC</p>
                       <p><strong>Response Time:</strong> We typically respond within 48 hours</p>
                     </div>
