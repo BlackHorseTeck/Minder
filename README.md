@@ -25,6 +25,10 @@
 
 </div>
 
+
+<img width="1440" height="900" alt="01-landing" src="https://github.com/user-attachments/assets/e37a197e-050e-4558-ba36-f12258a1736d" />
+
+
 ---
 
 ## Features
@@ -32,8 +36,8 @@
 **⚡ Prompt-to-Code Next.js Apps**  
 Transform natural language descriptions into complete Next.js applications with TypeScript and Tailwind CSS. No templates, no restrictions.
 
-**🎯 Unlimited Free AI Generation**  
-Powered by Grok 4 during beta. Generate as many applications as you need without hitting usage limits or paywalls.
+**🎯 Generous Free Tier**  
+Powered by Google Gemini's free API model. Generate as many applications as you need without hitting usage limits or paywalls.
 
 **✨ No AI Boilerplate**  
 Clean, idiomatic Next.js code without generic AI patterns. Every generation feels intentional, structured, and ready for real-world projects.
@@ -128,7 +132,7 @@ Design a detailed product page for a sneaker store. Left side should have an ima
 | Code Execution | E2B | Sandboxed environment for secure code execution and previews |
 | Infrastructure | AWS | Cloud hosting and storage services |
 | Containerization | Docker | Application packaging and deployment consistency |
-| AI Model | Grok 4 | Advanced language model for code generation |
+| AI Model | Gemini | Advanced language model for code generation |
 
 ---
 
