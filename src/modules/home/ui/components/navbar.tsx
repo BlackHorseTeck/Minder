@@ -27,6 +27,7 @@ export const Navbar = () => {
   }, []);
 
   const navItems = [
+    { name: "Features", href: "/features" },
     { name: "Pricing", href: "/pricing" },
     { name: "Guide", href: "/guide" },
   ];
@@ -38,9 +39,9 @@ export const Navbar = () => {
       description: "Learn more about Minder and our mission.",
     },
     {
-      title: "Showcase",
-      href: "/showcase",
-      description: "Explore our showcase of projects.",
+      title: "Features",
+      href: "/features",
+      description: "Discover what makes Minder powerful.",
     },
     {
       title: "Terms",
