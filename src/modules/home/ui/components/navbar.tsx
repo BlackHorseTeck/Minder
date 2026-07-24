@@ -54,12 +54,6 @@ export const Navbar = () => {
       description: "How we protect and handle your data.",
     },
     {
-      title: "We are hiring ✨",
-      href: "/careers",
-      description: "Join our team and help shape the future.",
-      highlight: true,
-    },
-    {
       title: "Support",
       href: "/support",
       description: "blackhorse.lines@gmail.com",
