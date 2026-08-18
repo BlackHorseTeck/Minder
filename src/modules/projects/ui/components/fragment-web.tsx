@@ -48,7 +48,7 @@ export function FragmentWeb({ data }: Props) {
       <div className="space-y-2">
         <h3 className="text-lg font-semibold text-foreground">Preview Unavailable</h3>
         <p className="text-sm text-muted-foreground max-w-md">
-          The preview couldn't be loaded. This might be due to network issues or the sandbox being temporarily unavailable.
+          The preview couldn't be loaded. This might be due to network issues or an expired sandbox. Use Restore in the preview toolbar to create a new live preview from the saved files.
         </p>
       </div>
       <div className="flex gap-3">

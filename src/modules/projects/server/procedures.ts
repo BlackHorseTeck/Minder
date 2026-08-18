@@ -7,6 +7,8 @@ import {
 import { generateSlug } from "random-word-slugs";
 import { TRPCError } from "@trpc/server";
 import { consumeCredits } from "@/lib/usage";
+import { Sandbox } from "e2b";
+import { SANDBOX_TIMEOUT } from "@/inngest/types";
 
 export const projectsRouter = createTRPCRouter({
   getOne: protectedProcedure
@@ -101,5 +103,66 @@ export const projectsRouter = createTRPCRouter({
       }
 
       return createdProject;
+    }),
+
+  restorePreview: protectedProcedure
+    .input(
+      z.object({
+        fragmentId: z.string().min(1, { message: "Fragment ID is required" }),
+      }),
+    )
+    .mutation(async ({ input, ctx }) => {
+      const fragment = await prisma.fragment.findFirst({
+        where: {
+          id: input.fragmentId,
+          message: {
+            project: {
+              userId: ctx.auth.userId,
+            },
+          },
+        },
+      });
+
+      if (!fragment) {
+        throw new TRPCError({ code: "NOT_FOUND", message: "Generated version not found" });
+      }
+
+      if (!fragment.files || typeof fragment.files !== "object" || Array.isArray(fragment.files)) {
+        throw new TRPCError({
+          code: "PRECONDITION_FAILED",
+          message: "This version does not contain files that can be restored.",
+        });
+      }
+
+      const files = Object.entries(fragment.files as Record<string, unknown>);
+      if (files.some(([, content]) => typeof content !== "string")) {
+        throw new TRPCError({
+          code: "PRECONDITION_FAILED",
+          message: "This version contains invalid generated files and cannot be restored.",
+        });
+      }
+
+      try {
+        const sandboxTemplate = process.env.E2B_TEMPLATE?.trim() || "minder-sandbox";
+        const sandbox = await Sandbox.create(sandboxTemplate);
+        await sandbox.setTimeout(SANDBOX_TIMEOUT);
+
+        for (const [path, content] of files) {
+          await sandbox.files.write(path, content as string);
+        }
+
+        const sandboxUrl = `https://${sandbox.getHost(3000)}`;
+
+        return await prisma.fragment.update({
+          where: { id: fragment.id },
+          data: { sandboxUrl },
+        });
+      } catch (error) {
+        console.error("Unable to restore E2B preview", error);
+        throw new TRPCError({
+          code: "INTERNAL_SERVER_ERROR",
+          message: "Unable to restore the preview. Please try again.",
+        });
+      }
     }),
 });

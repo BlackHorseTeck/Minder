@@ -14,6 +14,9 @@ import { FileExplorer } from "@/components/file-explorer";
 import { UserControl } from "@/components/user-control";
 import { useAuth } from "@clerk/nextjs";
 import { ErrorBoundary } from "react-error-boundary";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useTRPC } from "@/trpc/client";
+import { toast } from "sonner";
 
 const LoadingState = ({ message }: { message: string }) => (
     <div className="flex h-full flex-col items-center justify-center gap-4 text-muted-foreground">
@@ -43,12 +46,29 @@ interface Props {
 
 export const ProjectView = ({ projectId }: Props) => {
     const { has } = useAuth();
+    const trpc = useTRPC();
+    const queryClient = useQueryClient();
     const hasProAccess = has?.({ plan: "pro" });
     const isFreeTier = has?.({ plan: "free_user" });
 
     const [activeFragment, setActiveFragment] = useState<Fragment | null>(null);
     const [tabState, setTabState] = useState<"preview" | "code">("preview");
     const [copied, setCopied] = useState(false);
+
+    const restorePreview = useMutation(
+        trpc.projects.restorePreview.mutationOptions({
+            onSuccess: (fragment) => {
+                setActiveFragment(fragment);
+                queryClient.invalidateQueries(
+                    trpc.messages.getMany.queryOptions({ projectId })
+                );
+                toast.success("Preview restored");
+            },
+            onError: (error) => {
+                toast.error(error.message);
+            },
+        })
+    );
 
     const handleRefresh = () => {
         if (activeFragment?.sandboxUrl) {
@@ -61,6 +81,12 @@ export const ProjectView = ({ projectId }: Props) => {
             await navigator.clipboard.writeText(activeFragment.sandboxUrl);
             setCopied(true);
             setTimeout(() => setCopied(false), 2000);
+        }
+    };
+
+    const handleRestorePreview = () => {
+        if (activeFragment) {
+            restorePreview.mutate({ fragmentId: activeFragment.id });
         }
     };
 
@@ -126,6 +152,18 @@ export const ProjectView = ({ projectId }: Props) => {
 
                             {activeFragment && (
                                 <div className="flex items-center gap-2 flex-1 max-w-md mx-4 bg-background/30 dark:bg-background/50 border border-border rounded-xl shadow-lg backdrop-blur-md hover:shadow-xl transition-all duration-300">
+                                    <Button
+                                        size="sm"
+                                        variant="ghost"
+                                        onClick={handleRestorePreview}
+                                        disabled={restorePreview.isPending}
+                                        className="hover:bg-primary/20 transition-colors duration-200 m-1 h-8 gap-1.5 px-2 flex-shrink-0"
+                                        title="Create a new live preview from this version's saved files"
+                                    >
+                                        <RefreshCcwIcon className={`h-3.5 w-3.5 ${restorePreview.isPending ? "animate-spin" : ""}`} />
+                                        <span className="hidden xl:inline">{restorePreview.isPending ? "Restoring" : "Restore"}</span>
+                                    </Button>
+
                                     <Button
                                         size="icon"
                                         variant="ghost"
