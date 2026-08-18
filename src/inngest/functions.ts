@@ -41,10 +41,8 @@ export const codeAgentFunction = inngest.createFunction(
   async ({ event, step }) => {
 
     const sandboxId = await step.run("get-sandbox-id", async () => {
-      const sandboxTemplate = process.env.E2B_TEMPLATE?.trim();
-      const sandbox = sandboxTemplate
-        ? await Sandbox.create(sandboxTemplate)
-        : await Sandbox.create();
+      const sandboxTemplate = process.env.E2B_TEMPLATE?.trim() || "minder-sandbox";
+      const sandbox = await Sandbox.create(sandboxTemplate);
       await sandbox.setTimeout(SANDBOX_TIMEOUT);
       return sandbox.sandboxId;
     });

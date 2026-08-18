@@ -1,14 +1,6 @@
-#=====
-# Most Debian-based base images
-FROM node:21-slim
+FROM node:22-slim
 
-# Install curl
-RUN apt-get update && apt-get install -y curl && apt-get clean && rm -rf /var/lib/apt/lists/*
-
-COPY compile_page.sh /compile_page.sh
-FROM node:21-slim
-
-# Install curl
+# Install the health-check dependency used during template readiness.
 RUN apt-get update && apt-get install -y curl && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 COPY compile_page.sh /compile_page.sh
@@ -16,26 +8,10 @@ RUN chmod +x /compile_page.sh
 
 WORKDIR /home/user/nextjs-app
 
-# Use pnpm instead of npm for faster installation
-RUN npm install -g pnpm
+# Create the App Router workspace that the coding agent is instructed to edit.
+RUN npx create-next-app@15.3.3 . --yes --ts --tailwind --eslint --app --no-src-dir --use-npm --import-alias "@/*"
 
-# Create Next.js app with pnpm (much faster)
-RUN pnpm create next-app@15.3.3 . --yes
+# Move the ready workspace, including dotfiles, to the agent's expected path.
+RUN cp -a /home/user/nextjs-app/. /home/user/ && rm -rf /home/user/nextjs-app
 
-RUN pnpm dlx shadcn@2.6.3 init --yes -b neutral --force
-RUN pnpm dlx shadcn@2.6.3 add --all --yes
-
-RUN pnpm install
-
-# Move files
-RUN mv /home/user/nextjs-app/* /home/user/ && rm -rf /home/user/nextjs-app
-
-
-# e2b template build --name vedant-lovable-test-1 --cmd "compile_page.sh"
-
-# npm http fetch GET 200 https://registry.npmjs.org/colo
-# => => # r-name 52ms (cache miss)
-# => => # npm http fetch GET 200 https://registry.npmjs.org/is-a 
-# => => # rrayish 85ms (cache miss)                              
-# => => # npm verb reify failed optional dependency /home/user/n 
-# => => # extjs-app/node_modules/@tailwindcss/oxide-wasm32-wasi
+WORKDIR /home/user

@@ -1,17 +1,4 @@
-# This is a config for E2B sandbox template.
-# You can use template ID (lwltsannu9hu8y6qaqv0) or template name (vedant-lovable-test-1) to create a sandbox:
-
-# Python SDK
-# from e2b import Sandbox, AsyncSandbox
-# sandbox = Sandbox("vedant-lovable-test-1") # Sync sandbox
-# sandbox = await AsyncSandbox.create("vedant-lovable-test-1") # Async sandbox
-
-# JS SDK
-# import { Sandbox } from 'e2b'
-# const sandbox = await Sandbox.create('vedant-lovable-test-1')
-
-team_id = "d8c4c202-6645-48ee-9d07-df3f04fde4ee"
 start_cmd = "/compile_page.sh"
+ready_cmd = "curl --fail --silent --show-error http://127.0.0.1:3000/"
 dockerfile = "e2b.Dockerfile"
-template_name = "blackhorselines/vedant-lovable-test-1-dev"
-template_id = "7it3o728n24oaydj1zya"
+template_name = "minder-sandbox"
