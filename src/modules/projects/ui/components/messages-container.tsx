@@ -12,6 +12,7 @@ import { RotateCcwIcon } from "lucide-react";
 import { toast } from "sonner";
 
 const STALLED_GENERATION_AFTER_MS = 5 * 60 * 1000;
+const QUEUED_GENERATION_AFTER_MS = 90 * 1000;
 
 interface Props {
   projectId: string;
@@ -80,6 +81,14 @@ export const MessagesContainer = ({
     previousMessage?.role === "USER";
   const retryMessage = hasLatestGenerationError ? previousMessage : lastMessage;
   const canRetry = (hasWaitedTooLong || hasLatestGenerationError) && retryMessage?.role === "USER";
+  const pendingGenerationAge = isLastMessageUser
+    ? Date.now() - new Date(lastMessage.createdAt).getTime()
+    : 0;
+  const generationStatus = hasWaitedTooLong
+    ? "stalled"
+    : pendingGenerationAge < QUEUED_GENERATION_AFTER_MS
+      ? "queued"
+      : "processing";
 
   return (
     <div className="flex flex-col flex-1 min-h-0">
@@ -100,7 +109,7 @@ export const MessagesContainer = ({
             type={message.type}
           />
         ))}
-        {isLastMessageUser && <MessageLoading />}
+        {isLastMessageUser && <MessageLoading status={generationStatus} />}
         {canRetry && retryMessage && (
           <div className="mx-4 mb-6 rounded-xl border border-primary/25 bg-primary/5 px-4 py-3 text-sm">
             <p className="text-muted-foreground">

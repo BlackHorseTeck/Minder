@@ -1,60 +1,50 @@
 import Image from "next/image";
-import { useState, useEffect } from "react";
 import { Card } from "@/components/ui/card";
-import { Loader2 } from "lucide-react";
+import { CircleAlert, Clock3, Loader2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-const ShimmerMessages = () => {
-  const messages = [
-    "Your request is queued for Gemini and will begin shortly",
-    "Minder is generating your component; this may take a few minutes",
-    "Crafting your Next.js component with care",
-    "Building something amazing for you",
-    "Analyzing your request and designing the layout",
-    "Optimizing components for best performance",
-    "Adding interactive elements and styling",
-    "Almost ready, putting the final touches"
-  ];
+export type GenerationStatus = "queued" | "processing" | "stalled";
 
-  const [currentMessagesIndex, setCurrentMessagesIndex] = useState(0);
-  const [dots, setDots] = useState('');
-
-  useEffect(() => {
-    const messageInterval = setInterval(() => {
-      setCurrentMessagesIndex((prevIndex) => (prevIndex + 1) % messages.length);
-    }, 3000);
-
-    return () => clearInterval(messageInterval);
-  }, [messages.length]);
-
-  useEffect(() => {
-    const dotsInterval = setInterval(() => {
-      setDots(prev => {
-        if (prev === '...') return '';
-        return prev + '.';
-      });
-    }, 500);
-
-    return () => clearInterval(dotsInterval);
-  }, []);
-
-  return (
-    <div className="flex items-center gap-3">
-      <Loader2 className="h-5 w-5 animate-spin text-primary" />
-      <span className="text-muted-foreground text-base">
-        {messages[currentMessagesIndex]}{dots}
-      </span>
-    </div>
-  );
+const generationStatusContent: Record<
+  GenerationStatus,
+  {
+    label: string;
+    title: string;
+    description: string;
+  }
+> = {
+  queued: {
+    label: "Queued",
+    title: "Waiting for Gemini availability",
+    description:
+      "Your request is safely in line. Minder will begin automatically when the current generation slot is available.",
+  },
+  processing: {
+    label: "Processing",
+    title: "Preparing your generated app",
+    description:
+      "Minder has sent the request for generation. Complex requests can take a few minutes to complete.",
+  },
+  stalled: {
+    label: "Needs attention",
+    title: "No generation result has arrived yet",
+    description:
+      "This request has taken longer than expected. Generation has stopped updating; you can safely retry the same prompt below.",
+  },
 };
 
-export const MessageLoading = () => {
+interface Props {
+  status: GenerationStatus;
+}
+
+export const MessageLoading = ({ status }: Props) => {
+  const content = generationStatusContent[status];
+  const isActive = status !== "stalled";
+
   return (
     <div className="flex flex-col group px-4 pb-6">
-      {/* Header - matching AssistantMessage style */}
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-3">
-          {/* Avatar - matching AssistantMessage style */}
           <div className="relative">
             <div className="w-9 h-9 rounded-full bg-gradient-to-br from-muted/80 to-muted dark:from-muted/60 dark:to-muted/80 flex items-center justify-center border-2 border-border shadow-md">
               <Image 
@@ -64,41 +54,58 @@ export const MessageLoading = () => {
                 height={20}
               />
             </div>
-            {/* Pulsing yellow indicator for generating state */}
-            <div className="absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 bg-primary rounded-full border-2 border-background animate-pulse" />
+            <div
+              className={cn(
+                "absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 rounded-full border-2 border-background",
+                isActive ? "bg-primary animate-pulse" : "bg-amber-500",
+              )}
+            />
           </div>
           
-          {/* Name and generating status */}
           <div className="flex items-center gap-3">
             <span className="text-base font-bold">Minder AI</span>
-            <div className="flex items-center gap-1.5 px-2.5 py-1 bg-primary/8 dark:bg-primary/12 border border-primary/20 dark:border-primary/30 rounded-full">
-              <Loader2 className="h-3.5 w-3.5 text-primary animate-spin" />
-              <span className="text-xs font-medium text-primary">Generating</span>
+            <div
+              className={cn(
+                "flex items-center gap-1.5 px-2.5 py-1 rounded-full border",
+                isActive
+                  ? "bg-primary/8 dark:bg-primary/12 border-primary/20 dark:border-primary/30"
+                  : "bg-amber-500/10 border-amber-500/30",
+              )}
+            >
+              {isActive ? (
+                <Loader2 className="h-3.5 w-3.5 text-primary animate-spin" />
+              ) : (
+                <CircleAlert className="h-3.5 w-3.5 text-amber-500" />
+              )}
+              <span className={cn("text-xs font-medium", isActive ? "text-primary" : "text-amber-500")}>
+                {content.label}
+              </span>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Content - matching AssistantMessage card style */}
       <div className="pl-12 flex flex-col gap-4">
         <Card className={cn(
-          "relative border-2 rounded-2xl p-5 shadow-sm",
-          "border-primary/25 dark:border-primary/35 bg-primary/3 dark:bg-primary/8"
+          "border rounded-2xl p-5 shadow-sm",
+          isActive
+            ? "border-primary/25 dark:border-primary/35 bg-primary/3 dark:bg-primary/8"
+            : "border-amber-500/30 bg-amber-500/[0.04]"
         )}>
-          {/* Subtle background decoration */}
-          <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-primary/3 dark:from-primary/6 to-transparent rounded-2xl" />
-          
-          {/* Loading content */}
-          <div className="relative">
-            <ShimmerMessages />
+          <div className="flex items-start gap-3" aria-live="polite">
+            {isActive ? (
+              <Loader2 className="mt-0.5 h-5 w-5 shrink-0 animate-spin text-primary" />
+            ) : (
+              <Clock3 className="mt-0.5 h-5 w-5 shrink-0 text-amber-500" />
+            )}
+            <div className="space-y-1">
+              <p className="font-medium text-foreground">{content.title}</p>
+              <p className="text-sm leading-6 text-muted-foreground">{content.description}</p>
+            </div>
           </div>
-
-          {/* Message tail - matching yellow theme */}
-          <div className="absolute -bottom-1 left-10 w-4 h-4 bg-primary/3 dark:bg-primary/8 border-l-2 border-b-2 border-primary/25 dark:border-primary/35 transform rotate-45" />
         </Card>
 
-        {/* Optional: Skeleton for potential fragment card */}
-        <div className="animate-pulse">
+        <div className={cn(isActive && "animate-pulse")}>
           <div className="h-20 bg-muted/30 dark:bg-muted/20 rounded-2xl border-2 border-dashed border-border/50"></div>
         </div>
       </div>
