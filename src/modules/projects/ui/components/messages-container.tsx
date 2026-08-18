@@ -1,12 +1,17 @@
 "use client";
 
-import { useSuspenseQuery } from "@tanstack/react-query";
+import { useMutation, useSuspenseQuery } from "@tanstack/react-query";
 import { useTRPC } from "@/trpc/client";
 import { MessageCard } from "./message-card";
 import { MessageForm } from "./message-form";
 import { useRef, useEffect } from "react";
 import { Fragment } from "@prisma/client";
 import { MessageLoading } from "./message-loading";
+import { Button } from "@/components/ui/button";
+import { RotateCcwIcon } from "lucide-react";
+import { toast } from "sonner";
+
+const STALLED_GENERATION_AFTER_MS = 5 * 60 * 1000;
 
 interface Props {
   projectId: string;
@@ -22,6 +27,16 @@ export const MessagesContainer = ({
   const bottomRef = useRef<HTMLDivElement>(null);
   const trpc = useTRPC();
   const lastAssistantMessageIdRef = useRef<string | null>(null);
+  const retryGeneration = useMutation(
+    trpc.projects.retryGeneration.mutationOptions({
+      onSuccess: () => {
+        toast.success("Generation requeued. Minder will continue as soon as Gemini is available.");
+      },
+      onError: (error) => {
+        toast.error(error.message);
+      },
+    }),
+  );
 
   const { data: messages } = useSuspenseQuery(
     trpc.messages.getMany.queryOptions(
@@ -54,7 +69,17 @@ export const MessagesContainer = ({
   }, [messages?.length]);
 
   const lastMessage = messages?.[messages.length - 1];
+  const previousMessage = messages?.[messages.length - 2];
   const isLastMessageUser = lastMessage?.role === "USER";
+  const hasWaitedTooLong =
+    isLastMessageUser &&
+    Date.now() - new Date(lastMessage.createdAt).getTime() >= STALLED_GENERATION_AFTER_MS;
+  const hasLatestGenerationError =
+    lastMessage?.role === "ASSISTANT" &&
+    lastMessage.type === "ERROR" &&
+    previousMessage?.role === "USER";
+  const retryMessage = hasLatestGenerationError ? previousMessage : lastMessage;
+  const canRetry = (hasWaitedTooLong || hasLatestGenerationError) && retryMessage?.role === "USER";
 
   return (
     <div className="flex flex-col flex-1 min-h-0">
@@ -76,6 +101,22 @@ export const MessagesContainer = ({
           />
         ))}
         {isLastMessageUser && <MessageLoading />}
+        {canRetry && retryMessage && (
+          <div className="mx-4 mb-6 rounded-xl border border-primary/25 bg-primary/5 px-4 py-3 text-sm">
+            <p className="text-muted-foreground">
+              This generation has not completed. You can safely requeue the same request without creating another project.
+            </p>
+            <Button
+              className="mt-3"
+              size="sm"
+              onClick={() => retryGeneration.mutate({ projectId, messageId: retryMessage.id })}
+              disabled={retryGeneration.isPending}
+            >
+              <RotateCcwIcon className="mr-2 h-4 w-4" />
+              {retryGeneration.isPending ? "Requeuing…" : "Retry generation"}
+            </Button>
+          </div>
+        )}
         <div ref={bottomRef} />
       </div>
 

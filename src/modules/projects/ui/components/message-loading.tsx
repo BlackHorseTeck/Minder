@@ -6,8 +6,8 @@ import { cn } from "@/lib/utils";
 
 const ShimmerMessages = () => {
   const messages = [
-    "Please wait, I'm generating your component",
-    "This may take a few minutes to create the perfect solution",
+    "Your request is queued for Gemini and will begin shortly",
+    "Minder is generating your component; this may take a few minutes",
     "Crafting your Next.js component with care",
     "Building something amazing for you",
     "Analyzing your request and designing the layout",

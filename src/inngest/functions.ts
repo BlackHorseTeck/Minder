@@ -9,15 +9,41 @@ import { gemini,
 import { Sandbox } from "e2b";
 import { getSandboxId, lastAssistantTextMessageContent } from "./utils";
 import z from "zod";
-import { FRAGMENT_TITLE_PROMPT, PROMPT, RESPONSE_PROMPT } from "@/prompt";
+import { PROMPT } from "@/prompt";
 import prisma from "@/lib/db";
-import { parseAgentOutput } from "./utils";
 import { SANDBOX_TIMEOUT } from "./types";
 
 interface AgentState {
   summary: string;
   files: { [path: string]: string };
 }
+
+const getGenerationFailureMessage = (error: unknown) => {
+  const details = error instanceof Error ? error.message : String(error);
+
+  if (/\b429\b|rate.?limit|resource.?exhausted/i.test(details)) {
+    return "Gemini is temporarily rate-limited. Your request was not generated; please retry in a few minutes.";
+  }
+
+  return "Generation stopped before the app could be completed. Please retry in a moment.";
+};
+
+const formatGenerationSummary = (summary: string) =>
+  summary
+    .replace(/<task_summary>/gi, "")
+    .replace(/<\/task_summary>/gi, "")
+    .trim();
+
+const getFragmentTitle = (summary: string) => {
+  const title = summary
+    .replace(/[^a-zA-Z0-9\s-]/g, "")
+    .trim()
+    .split(/\s+/)
+    .slice(0, 3)
+    .join(" ");
+
+  return title || "Generated App";
+};
 
 const createGeminiModel = () => {
   const apiKey =
@@ -37,7 +63,42 @@ const createGeminiModel = () => {
 };
 
 export const codeAgentFunction = inngest.createFunction(
-  { id: "code-agent", triggers: { event: "code-agent/run" } },
+  {
+    id: "code-agent",
+    triggers: { event: "code-agent/run" },
+    concurrency: 1,
+    throttle: { limit: 1, period: "75s" },
+    retries: 1,
+    onFailure: async ({ event, step, error }) => {
+      const projectId = event.data.event.data.projectId;
+      const content = getGenerationFailureMessage(error);
+
+      await step.run("save-terminal-generation-error", async () => {
+        const latestMessage = await prisma.message.findFirst({
+          where: { projectId },
+          orderBy: { createdAt: "desc" },
+          select: { role: true, type: true, content: true },
+        });
+
+        if (
+          latestMessage?.role === "ASSISTANT" &&
+          latestMessage.type === "ERROR" &&
+          latestMessage.content === content
+        ) {
+          return latestMessage;
+        }
+
+        return prisma.message.create({
+          data: {
+            projectId,
+            role: "ASSISTANT",
+            type: "ERROR",
+            content,
+          },
+        });
+      });
+    },
+  },
   async ({ event, step }) => {
 
     const sandboxId = await step.run("get-sandbox-id", async () => {
@@ -204,25 +265,12 @@ export const codeAgentFunction = inngest.createFunction(
 
     const result = await network.run(event.data.value, { state });
 
-    const fragmentTitleGenerator = createAgent({
-      name: "fragment-title-generator",
-      description: "A fragment title generator",
-      system: FRAGMENT_TITLE_PROMPT,
-      model: createGeminiModel(),
-    });
+    const summary = formatGenerationSummary(result.state.data.summary);
+    const files = result.state.data.files || {};
 
-    const responseGenerator = createAgent({
-      name: "response-generator",
-      description: "A response generator",
-      system: RESPONSE_PROMPT,
-      model: createGeminiModel(),
-    });
-
-    const { output: fragmentTitleOutput } = await fragmentTitleGenerator.run(result.state.data.summary);
-    const { output: responseOutput } = await responseGenerator.run(result.state.data.summary);
-
-    const isError = 
-      !result.state.data.summary || Object.keys(result.state.data.files || {}).length === 0;
+    if (!summary || Object.keys(files).length === 0) {
+      throw new Error("The coding agent did not return a complete generated application.");
+    }
 
     const sandboxUrl = await step.run("get-sandbox-url", async () => {
       const sandbox = await getSandboxId(sandboxId);
@@ -231,27 +279,17 @@ export const codeAgentFunction = inngest.createFunction(
     });
 
     await step.run("save-result", async() => {
-      if(isError) {
-        return await prisma.message.create({
-          data: {
-            projectId: event.data.projectId,
-            content: "Error: " + result.state.data.summary,
-            role: "ASSISTANT",
-            type: "ERROR",
-          },
-        });
-      }
       return await prisma.message.create({
         data: {
           projectId: event.data.projectId,
-          content: parseAgentOutput(responseOutput),
+          content: summary,
           role: "ASSISTANT",
           type: "RESULT",
           fragment: {
             create: {
               sandboxUrl: sandboxUrl,
-              title: parseAgentOutput(fragmentTitleOutput),
-              files: result.state.data.files,
+              title: getFragmentTitle(summary),
+              files,
             }
           }
         },
@@ -261,8 +299,8 @@ export const codeAgentFunction = inngest.createFunction(
     return {
       url: sandboxUrl,
       title: "Fragment",
-      files: result.state.data.files,
-      summary: result.state.data.summary,
+      files,
+      summary,
     };
   },
 );

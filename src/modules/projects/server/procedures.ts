@@ -105,6 +105,65 @@ export const projectsRouter = createTRPCRouter({
       return createdProject;
     }),
 
+  retryGeneration: protectedProcedure
+    .input(
+      z.object({
+        projectId: z.string().min(1, { message: "Project ID is required" }),
+        messageId: z.string().min(1, { message: "Message ID is required" }),
+      }),
+    )
+    .mutation(async ({ input, ctx }) => {
+      const userMessage = await prisma.message.findFirst({
+        where: {
+          id: input.messageId,
+          projectId: input.projectId,
+          role: "USER",
+          project: { userId: ctx.auth.userId },
+        },
+        select: { id: true, content: true },
+      });
+
+      if (!userMessage) {
+        throw new TRPCError({ code: "NOT_FOUND", message: "Generation request not found" });
+      }
+
+      const latestMessages = await prisma.message.findMany({
+        where: { projectId: input.projectId },
+        orderBy: { createdAt: "desc" },
+        take: 2,
+        select: { id: true, role: true, type: true },
+      });
+
+      const [latestMessage, previousMessage] = latestMessages;
+      const isStillPending = latestMessage?.id === userMessage.id;
+      const followsFailure =
+        latestMessage?.role === "ASSISTANT" &&
+        latestMessage.type === "ERROR" &&
+        previousMessage?.id === userMessage.id;
+
+      if (!isStillPending && !followsFailure) {
+        throw new TRPCError({
+          code: "PRECONDITION_FAILED",
+          message: "Only the latest unfinished generation can be retried.",
+        });
+      }
+
+      try {
+        await inngest.send({
+          name: "code-agent/run",
+          data: { value: userMessage.content, projectId: input.projectId },
+        });
+      } catch (error) {
+        console.error("Unable to retry project generation", error);
+        throw new TRPCError({
+          code: "INTERNAL_SERVER_ERROR",
+          message: "Generation could not be requeued. Please try again in a moment.",
+        });
+      }
+
+      return { queued: true };
+    }),
+
   restorePreview: protectedProcedure
     .input(
       z.object({
