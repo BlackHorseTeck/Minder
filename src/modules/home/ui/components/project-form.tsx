@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import TextareaAutosize from "react-textarea-autosize";
 import { toast } from "sonner";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { z } from "zod";
 import { ArrowUpIcon, Loader2Icon } from "lucide-react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
@@ -52,6 +52,7 @@ export const ProjectForm = () => {
   const trpc = useTRPC();
   const queryClient = useQueryClient();
   const clerk = useClerk();
+  const isSubmittingRef = useRef(false);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -79,7 +80,14 @@ export const ProjectForm = () => {
   const isButtonDisabled = isPending || !form.formState.isValid;
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
-    await createProject.mutateAsync(values);
+    if (isSubmittingRef.current) return;
+
+    isSubmittingRef.current = true;
+    try {
+      await createProject.mutateAsync(values);
+    } finally {
+      isSubmittingRef.current = false;
+    }
   };
 
   return (
@@ -143,7 +151,7 @@ export const ProjectForm = () => {
                       : "bg-primary text-primary-foreground shadow-md hover:bg-primary/40"
                   )}
                   disabled={isButtonDisabled}
-                  onClick={form.handleSubmit(onSubmit)}
+                  type="submit"
                 >
                   {isPending ? (
                     <Loader2Icon className="animate-spin size-4 text-primary bg-primary" />

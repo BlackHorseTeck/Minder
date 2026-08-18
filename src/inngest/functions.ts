@@ -189,25 +189,28 @@ export const codeAgentFunction = inngest.createFunction(
             ),
           }),
           handler: async ({ files }, { step, network }: Tool.Options<AgentState>) => {
-            const newFiles = await step?.run("createOrUpdateFiles", async () => {
-              try{
-                const updatedFiles = network.state.data.files || {};
-                const sandbox = await getSandboxId(sandboxId);
-                
-                for (const file of files) {
-                  await sandbox.files.write(file.path, file.content);
-                  updatedFiles[file.path] = file.content;
-                }
-                
-                return updatedFiles;
-              } catch (e) {
-                return "Error: " + e;
+            if (!step) {
+              throw new Error("The generation worker did not provide a step context for file creation.");
+            }
+
+            const newFiles = await step.run("createOrUpdateFiles", async () => {
+              const updatedFiles = { ...(network.state.data.files ?? {}) };
+              const sandbox = await getSandboxId(sandboxId);
+
+              for (const file of files) {
+                await sandbox.files.write(file.path, file.content);
+                updatedFiles[file.path] = file.content;
               }
+
+              return updatedFiles;
             });
 
-            if (typeof newFiles == "object") {
-              network.state.data.files = newFiles;
+            if (!newFiles || typeof newFiles !== "object" || Array.isArray(newFiles)) {
+              throw new Error("The coding agent could not save the generated files.");
             }
+
+            network.state.data.files = newFiles;
+            return `Saved ${files.length} generated file${files.length === 1 ? "" : "s"}.`;
           },
         }),
         
@@ -265,8 +268,12 @@ export const codeAgentFunction = inngest.createFunction(
 
     const result = await network.run(event.data.value, { state });
 
-    const summary = formatGenerationSummary(result.state.data.summary);
-    const files = result.state.data.files || {};
+    const generatedFiles = result.state.data.files || {};
+    const summary = formatGenerationSummary(result.state.data.summary) ||
+      (Object.keys(generatedFiles).length > 0
+        ? "Created a Next.js application based on your request."
+        : "");
+    const files = generatedFiles;
 
     if (!summary || Object.keys(files).length === 0) {
       throw new Error("The coding agent did not return a complete generated application.");
