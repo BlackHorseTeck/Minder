@@ -2,7 +2,7 @@
 
 import { Check, Shield, Cpu, Gauge, Headphones, Crown, ArrowRight } from "lucide-react";
 import { useState } from "react";
-import { useUser } from '@/lib/mock-clerk';
+import { useUser } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
 
 const PricingSection = () => {

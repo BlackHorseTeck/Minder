@@ -1,5 +1,5 @@
 import { inngest } from "./client";
-import { openai,
+import { gemini,
          createAgent, 
          createTool, 
          createNetwork, 
@@ -19,28 +19,32 @@ interface AgentState {
   files: { [path: string]: string };
 }
 
+const createGeminiModel = () => {
+  const apiKey =
+    process.env.GEMINI_API_KEY ??
+    process.env.GOOGLE_API_KEY ??
+    process.env.GOGOLE_API_KEY;
+
+  if (!apiKey) {
+    throw new Error("A Gemini API key is required to run code generation.");
+  }
+
+  return gemini({
+    model: process.env.GEMINI_MODEL ?? "gemini-2.5-flash",
+    apiKey,
+    defaultParameters: { generationConfig: { temperature: 0.1 } },
+  });
+};
+
 export const codeAgentFunction = inngest.createFunction(
   { id: "code-agent", triggers: { event: "code-agent/run" } },
   async ({ event, step }) => {
 
-    // --- Safe type-safe model selection ---
-    type ModelKey = "grok" | "codex" | "gemini";
-    const modelMapping: Record<ModelKey, string | undefined> = {
-      "grok": "x-ai/grok-4-fast:free",
-      "codex": "openai/gpt-5-codex",
-      "gemini": "google/gemini-2.5-flash",
-    };
-    const selectedModel = (event.data.model as ModelKey); // use model not selectedModel
-    const chosenModel = modelMapping[selectedModel];
-
-
-    // DEBUGGING
-    // if (!chosenModel) {
-    //   throw new Error(\`Selected model "${selectedModel}" is not configured in environment variables!\`);
-    // }
-    
     const sandboxId = await step.run("get-sandbox-id", async () => {
-      const sandbox = await Sandbox.create("minder-sandbox");
+      const sandboxTemplate = process.env.E2B_TEMPLATE?.trim();
+      const sandbox = sandboxTemplate
+        ? await Sandbox.create(sandboxTemplate)
+        : await Sandbox.create();
       await sandbox.setTimeout(SANDBOX_TIMEOUT);
       return sandbox.sandboxId;
     });
@@ -80,12 +84,7 @@ export const codeAgentFunction = inngest.createFunction(
       name: "codeAgent",
       description: "An expert coding angent",
       system: PROMPT,
-      model: openai({
-        model: chosenModel ?? "x-ai/grok-4-fast:free",
-        apiKey: process.env.OPENAI_API_KEY,
-        baseUrl: process.env.OPENAI_API_BASE,
-        defaultParameters: { temperature: 0.1 },
-      }),
+      model: createGeminiModel(),
 
       tools: [
         createTool({
@@ -111,9 +110,9 @@ export const codeAgentFunction = inngest.createFunction(
                 return result.stdout
               } catch (e) {
                 console.error(
-                  \`Command failed: ${e} \\nstddout: ${buffers.stdout}\\nstderr: ${buffers.stderr}\`,
+                  `Command failed: ${e}\nstdout: ${buffers.stdout}\nstderr: ${buffers.stderr}`,
                 );
-                return \`Command failed: ${e} \\nstddout: ${buffers.stdout}\\nstderr: ${buffers.stderr}\`;
+                return `Command failed: ${e}\nstdout: ${buffers.stdout}\nstderr: ${buffers.stderr}`;
               }
             });
           },
@@ -211,24 +210,14 @@ export const codeAgentFunction = inngest.createFunction(
       name: "fragment-title-generator",
       description: "A fragment title generator",
       system: FRAGMENT_TITLE_PROMPT,
-      model: openai({
-        model: process.env.OPENAI_FREE2_MODEL ?? "x-ai/grok-4-fast:free",
-        apiKey: process.env.OPENAI_API_KEY,
-        baseUrl: process.env.OPENAI_API_BASE,
-        defaultParameters: { temperature: 0.1 },
-      }),
+      model: createGeminiModel(),
     });
 
     const responseGenerator = createAgent({
       name: "response-generator",
       description: "A response generator",
       system: RESPONSE_PROMPT,
-      model: openai({
-        model: process.env.OPENAI_FREE2_MODEL ?? "x-ai/grok-4-fast:free",
-        apiKey: process.env.OPENAI_API_KEY,
-        baseUrl: process.env.OPENAI_API_BASE,
-        defaultParameters: { temperature: 0.1 },
-      }),
+      model: createGeminiModel(),
     });
 
     const { output: fragmentTitleOutput } = await fragmentTitleGenerator.run(result.state.data.summary);
@@ -240,7 +229,7 @@ export const codeAgentFunction = inngest.createFunction(
     const sandboxUrl = await step.run("get-sandbox-url", async () => {
       const sandbox = await getSandboxId(sandboxId);
       const host = sandbox.getHost(3000);
-      return \`https://${host}\`;
+      return `https://${host}`;
     });
 
     await step.run("save-result", async() => {

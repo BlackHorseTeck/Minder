@@ -1,7 +1,7 @@
 "use client";
 
 import { useCurrentTheme } from "@/hooks/use-current-theme";
-import { UserButton } from '@/lib/mock-clerk';
+import { UserButton } from "@clerk/nextjs";
 import { dark } from "@clerk/themes";
 
 interface Props { 
@@ -25,4 +25,3 @@ export const UserControl = ({ showName }: Props) => {
     />
   );
 };
-   

@@ -39,7 +39,6 @@ export const messagesRouter = createTRPCRouter({
           .min(1, { message: "Message cannot be empty" })
           .max(1000, { message: "Message cannot be longer than 1000 characters" }),
         projectId: z.string().min(1, { message: "Project ID is required" }),
-        model: z.enum(["grok", "codex", "gemini"]), // <-- Added model
       }),
     )
     .mutation(async ({ input, ctx }) => {
@@ -77,14 +76,27 @@ export const messagesRouter = createTRPCRouter({
         },
       });
 
-      await inngest.send({
-        name: "code-agent/run",
-        data: {
-          value: input.value,
-          projectId: input.projectId,
-          model: input.model, // <-- Include model in event
-        },
-      });
+      try {
+        await inngest.send({
+          name: "code-agent/run",
+          data: {
+            value: input.value,
+            projectId: input.projectId,
+          },
+        });
+      } catch (error) {
+        console.error("Unable to dispatch message generation", error);
+
+        await prisma.message.create({
+          data: {
+            projectId: input.projectId,
+            role: "ASSISTANT",
+            type: "ERROR",
+            content:
+              "Generation could not start because the background worker is unavailable. Please try again in a moment.",
+          },
+        });
+      }
 
       return createdMessage;
     }),

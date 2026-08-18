@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { SignedIn, SignedOut, SignUpButton } from "@/lib/mock-clerk";
+import { SignedIn, SignedOut, SignUpButton } from "@clerk/nextjs";
 import { cn } from "@/lib/utils";
 import { UserControl } from "@/components/user-control";
 import { useScroll } from "@/hooks/use-scroll";
@@ -135,8 +135,7 @@ export const Navbar = () => {
                     href={item.href}
                     className={cn(
                       "flex flex-col items-start gap-0.5 p-2 rounded-lg transition-colors",
-                      "hover:bg-primary/10 hover:text-primary",
-                      item.highlight && "text-primary font-semibold"
+                      "hover:bg-primary/10 hover:text-primary"
                     )}
                   >
                     <span className="text-sm font-medium">{item.title}</span>

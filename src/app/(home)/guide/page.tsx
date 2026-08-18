@@ -5,6 +5,8 @@ import Image from "next/image";
 
 export default function PromptingGuideBlog() {
   const [mounted, setMounted] = useState(false);
+  const [readingProgress, setReadingProgress] = useState(0);
+  const [activeSection, setActiveSection] = useState("");
 
   useEffect(() => {
     setMounted(true);
@@ -26,6 +28,11 @@ export default function PromptingGuideBlog() {
       });
       setActiveSection(current);
     };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   if (!mounted) return null;

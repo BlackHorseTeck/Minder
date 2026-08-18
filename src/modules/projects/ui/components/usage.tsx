@@ -4,7 +4,7 @@ import Link from "next/link";
 import { CrownIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { formatDuration, intervalToDuration } from "date-fns";
-import { useAuth } from '@/lib/mock-clerk';
+import { useAuth } from "@clerk/nextjs";
 import { useMemo } from "react";
 import { cn } from "@/lib/utils";
 
