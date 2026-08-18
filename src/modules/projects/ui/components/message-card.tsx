@@ -48,10 +48,10 @@ const UserMessage = ({ content, createdAt }: UserMessageProps) => {
           <span>{formatDistanceToNow(createdAt, { addSuffix: true })}</span>
         </div>
         
-        {/* Message bubble - milder background */}
-        <Card className="relative bg-primary/90 dark:bg-primary/80 text-primary-foreground rounded-2xl rounded-tr-md p-4 shadow-md border border-primary/20 dark:border-primary/30 group/message">
+        {/* Prompt bubble: a clean rounded surface that echoes the workspace panels. */}
+        <Card className="relative overflow-hidden bg-primary/90 dark:bg-primary/80 text-primary-foreground rounded-2xl p-4 shadow-md border border-primary/20 dark:border-primary/30 group/message">
           {/* Very subtle background pattern */}
-          <div className="absolute inset-0 bg-gradient-to-br from-white/5 dark:from-white/3 to-transparent rounded-2xl rounded-tr-md" />
+          <div className="absolute inset-0 bg-gradient-to-br from-white/5 dark:from-white/3 to-transparent rounded-2xl" />
           
           <div className="relative whitespace-pre-wrap break-words leading-relaxed font-medium">
             {content}
@@ -71,8 +71,6 @@ const UserMessage = ({ content, createdAt }: UserMessageProps) => {
             )}
           </Button>
           
-          {/* Message tail - milder */}
-          <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-primary/90 dark:bg-primary/80 transform rotate-45" />
         </Card>
       </div>
     </div>
