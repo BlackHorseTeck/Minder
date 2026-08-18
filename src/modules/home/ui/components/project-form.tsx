@@ -130,7 +130,7 @@ export const ProjectForm = () => {
             <div className="flex items-center justify-between gap-x-2 relative">
               <div className="flex items-center gap-1.5 rounded-full border border-white/20 bg-white/20 px-2.5 py-1 text-[10px] font-medium text-muted-foreground backdrop-blur-md">
                 <span className="size-3"><FcGoogle /></span>
-                <span>Gemini 2.5 Flash Lite</span>
+                <span>Gemini 3.5 Flash Lite</span>
                 <span className="rounded-full bg-primary/15 px-1.5 py-0.5 text-[9px] text-primary">Free</span>
               </div>
 
