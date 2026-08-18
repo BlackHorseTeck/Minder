@@ -56,7 +56,7 @@ const createGeminiModel = () => {
   }
 
   return gemini({
-    model: process.env.GEMINI_MODEL ?? "gemini-2.5-flash",
+    model: process.env.GEMINI_MODEL ?? "gemini-2.5-flash-lite",
     apiKey,
     defaultParameters: { generationConfig: { temperature: 0.1 } },
   });
