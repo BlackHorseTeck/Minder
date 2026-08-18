@@ -1,48 +1,21 @@
 "use client";
 
 import { formatDistanceToNow } from "date-fns";
-import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { useTRPC } from "@/trpc/client";
-import { useUser } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
 import { 
-  MoreVertical, 
-  Edit, 
-  Trash2,
   FolderOpen,
   Calendar,
   ArrowRight,
   Code2
 } from "lucide-react";
+import { ProjectActions } from "@/modules/projects/ui/components/project-actions";
 
 export const ProjectsList = () => {
   const trpc = useTRPC();
   const { data: projects } = useQuery(trpc.projects.getMany.queryOptions());
-  const { user } = useUser();
   const router = useRouter();
-  const queryClient = useQueryClient();
-  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
-
-  // const deleteProjectMutation = useMutation({
-  //   mutationFn: (projectId: string) => trpc.projects.delete.mutate({ id: projectId }),
-  //   onSuccess: () => {
-  //     queryClient.invalidateQueries({ queryKey: ['projects'] });
-  //     setActiveDropdown(null);
-  //   },
-  // });
-
-  // if (!user) return null;
-
-  // const handleDelete = async (projectId: string, projectName: string) => {
-  //   if (window.confirm(`Are you sure you want to delete "${projectName}"?`)) {
-  //     await deleteProjectMutation.mutateAsync(projectId);
-  //   }
-  // };
-
-  // const handleEdit = (projectId: string) => {
-  //   router.push(`/projects/${projectId}/edit`);
-  // };
 
   // Show only first 6 projects (2 rows)
   const displayedProjects = projects?.slice(0, 6) || [];
@@ -100,41 +73,7 @@ export const ProjectsList = () => {
             >
               {/* Dropdown Menu */}
               <div className="absolute top-5 right-5 z-10">
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setActiveDropdown(activeDropdown === project.id ? null : project.id);
-                  }}
-                  className="opacity-0 group-hover:opacity-100 p-2.5 hover:bg-muted rounded-xl transition-all duration-200"
-                >
-                  <MoreVertical className="w-4 h-4 text-muted-foreground hover:text-foreground" />
-                </button>
-                
-                {activeDropdown === project.id && (
-                  <div className="absolute right-0 top-full mt-2 w-44 bg-background rounded-xl shadow-xl border border-border z-20 overflow-hidden">
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        // handleEdit(project.id);
-                      }}
-                      className="w-full px-4 py-3 text-left text-sm hover:bg-muted flex items-center gap-3 text-foreground transition-colors duration-150"
-                    >
-                      <Edit className="w-4 h-4" />
-                      Edit Project
-                    </button>
-                    <div className="h-px bg-border" />
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        // handleDelete(project.id, project.name);
-                      }}
-                      className="w-full px-4 py-3 text-left text-sm hover:bg-red-50 hover:text-red-600 flex items-center gap-3 text-muted-foreground transition-colors duration-150"
-                    >
-                      <Trash2 className="w-4 h-4" />
-                      Delete Project
-                    </button>
-                  </div>
-                )}
+                <ProjectActions projectId={project.id} projectName={project.name} />
               </div>
 
               {/* Project Card Content - Icon Removed */}
