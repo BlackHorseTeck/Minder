@@ -114,6 +114,9 @@ export const codeAgentFunction = inngest.createFunction(
       const messages = await prisma.message.findMany({
         where: {
           projectId: event.data.projectId,
+          // Gemini cannot continue a conversation whose latest retained turn is
+          // an application-generated error rather than a model response.
+          type: { not: "ERROR" },
         },
         orderBy: {
           createdAt: "desc",
