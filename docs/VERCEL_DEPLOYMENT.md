@@ -1,0 +1,49 @@
+# Deploying Minder on Vercel
+
+This repository is a **Next.js 15** application and can be deployed directly from the `Minder` branch with Vercel's standard Git import flow. No custom server, container, or `vercel.json` file is required. The included `.nvmrc` pins builds to Node.js 20, and the Inngest route sets a 300-second maximum duration for its serve handler.
+
+## 1. Import the GitHub repository
+
+In Vercel, create a new project from the GitHub repository and select the **`Minder` branch** as the production branch. Vercel should detect Next.js automatically. Keep the default build command, which runs `npm run build` and therefore executes `prisma generate` plus the repository's Gemini thought-signature compatibility patch through `postinstall`.
+
+> Do not use `npm run dev` as the production command. Vercel deploys the result of the Next.js build as serverless functions and static assets.[1]
+
+## 2. Configure production environment variables
+
+Add these variables in the Vercel project settings. Enter values directly in Vercel; never commit them to GitHub or paste them into this document.
+
+| Variable | Required | Purpose |
+| --- | --- | --- |
+| `DATABASE_URL` | Yes | Pooled PostgreSQL connection string for the existing Prisma database. Do not reuse a development-only database. |
+| `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY` | Yes | Clerk client-side publishable key. |
+| `CLERK_SECRET_KEY` | Yes | Clerk server-side secret key. |
+| `NEXT_PUBLIC_APP_URL` | Yes | Canonical production URL, for example `https://minder.example.com`. Required for server-rendered tRPC requests. |
+| `GEMINI_API_KEY` | Yes | Google Gemini server-side API key. This is the preferred variable name used by the application. |
+| `GEMINI_MODEL` | Yes | Set to `gemini-3.5-flash-lite`. |
+| `E2B_API_KEY` | Yes | E2B server-side API key used to create and restore previews. |
+| `E2B_TEMPLATE` | Yes | Set to `minder-sandbox`. |
+| `INNGEST_EVENT_KEY` | Yes | Inngest event key for the selected environment. |
+| `INNGEST_SIGNING_KEY` | Yes | Inngest signing key used to verify calls to `/api/inngest`. |
+| `INNGEST_SERVE_ORIGIN` | Recommended | Set to the canonical production origin, for example `https://minder.example.com`, once the domain is live. |
+
+Set the Clerk production redirect URLs and allowed origins to include the Vercel production domain before testing sign-in. Configure a **separate database** for Vercel preview deployments if pull requests might include Prisma schema changes; this avoids preview builds affecting production data.[2]
+
+## 3. Connect Inngest
+
+Install the official Inngest integration for the Vercel project when available. It synchronizes the deployed application and supplies the event and signing keys. If installing the integration is not appropriate, add the two Inngest variables above manually and register this endpoint in the Inngest dashboard:
+
+```text
+https://<production-domain>/api/inngest
+```
+
+The handler is already implemented at `src/app/api/inngest/route.ts`. Do not expose the endpoint behind Vercel deployment protection unless an Inngest protection-bypass configuration is also supplied; otherwise Inngest cannot invoke the application.[3]
+
+## 4. Verify the deployment
+
+After Vercel reports a successful build, verify the following in order: the public landing page, Clerk sign-in and sign-out, creation of one disposable test project, Inngest app sync, Gemini generation status updates, and E2B preview restoration. Delete the disposable project after verification.
+
+## References
+
+[1]: https://vercel.com/docs/frameworks/full-stack/nextjs "Next.js on Vercel"
+[2]: https://www.prisma.io/docs/orm/prisma-client/deployment/serverless/deploy-to-vercel "Prisma: Deploy to Vercel"
+[3]: https://www.inngest.com/docs/deploy/vercel "Inngest: Deploy to Vercel"
