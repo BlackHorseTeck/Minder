@@ -2,6 +2,8 @@
 
 This repository is a **Next.js 15** application and can be deployed directly from the `Minder` branch with Vercel's standard Git import flow. No custom server, container, or `vercel.json` file is required. The included `.nvmrc` pins builds to Node.js 20, and the Inngest route sets a 300-second maximum duration for its serve handler.
 
+The repository also includes `.npmrc` with `legacy-peer-deps=true`. This preserves the dependency-resolution mode required by the current `openai` and `zod` peer dependency range during Vercel's clean `npm install`; it does **not** add or enable an OpenAI runtime integration.
+
 ## 1. Import the GitHub repository
 
 In Vercel, create a new project from the GitHub repository and select the **`Minder` branch** as the production branch. Vercel should detect Next.js automatically. Keep the default build command, which runs `npm run build` and therefore executes `prisma generate` plus the repository's Gemini thought-signature compatibility patch through `postinstall`.
@@ -41,6 +43,8 @@ The handler is already implemented at `src/app/api/inngest/route.ts`. Do not exp
 ## 4. Verify the deployment
 
 After Vercel reports a successful build, verify the following in order: the public landing page, Clerk sign-in and sign-out, creation of one disposable test project, Inngest app sync, Gemini generation status updates, and E2B preview restoration. Delete the disposable project after verification.
+
+> An unauthenticated Vercel CLI temporary deployment may reject this repository because Next.js middleware runs on Vercel's Edge runtime. Deploy through an authenticated Vercel project connected to GitHub instead; that is the supported route for this application.
 
 ## References
 
