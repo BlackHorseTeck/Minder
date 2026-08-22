@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "NODE_ENV=production next build",
+    "build": "node --env-file-if-exists=.env.local scripts/validate-production-env.mjs && NODE_ENV=production next build",
     "start": "next start",
     "lint": "next lint",
     "postinstall": "prisma generate && node scripts/apply-gemini-thought-signature-patch.mjs"

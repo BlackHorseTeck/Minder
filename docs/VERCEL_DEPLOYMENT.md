@@ -6,7 +6,7 @@ The repository also includes `.npmrc` with `legacy-peer-deps=true`. This preserv
 
 ## 1. Import the GitHub repository
 
-In Vercel, create a new project from the GitHub repository and select the **`Minder` branch** as the production branch. Vercel should detect Next.js automatically. Keep the default build command, which runs `npm run build` and therefore executes `prisma generate` plus the repository's Gemini thought-signature compatibility patch through `postinstall`.
+In Vercel, create a new project from the GitHub repository and select the **`Minder` branch** as the production branch. Vercel should detect Next.js automatically. Keep the default build command, which runs `npm run build` and therefore executes `prisma generate`, the repository's Gemini thought-signature compatibility patch through `postinstall`, and a secret-safe production environment preflight.
 
 > Do not use `npm run dev` as the production command. Vercel deploys the result of the Next.js build as serverless functions and static assets.[1]
 
@@ -19,14 +19,16 @@ Add these variables in the Vercel project settings. Enter values directly in Ver
 | `DATABASE_URL` | Yes | Pooled PostgreSQL connection string for the existing Prisma database. Do not reuse a development-only database. |
 | `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY` | Yes | Clerk client-side publishable key. |
 | `CLERK_SECRET_KEY` | Yes | Clerk server-side secret key. |
-| `NEXT_PUBLIC_APP_URL` | Yes | Canonical production URL, for example `https://minder.example.com`. Required for server-rendered tRPC requests. |
-| `GEMINI_API_KEY` | Yes | Google Gemini server-side API key. This is the preferred variable name used by the application. |
+| `NEXT_PUBLIC_APP_URL` | Recommended before using a custom domain | Canonical production URL, for example `https://minder.example.com`. On an initial Vercel deployment the application safely falls back to Vercel's `VERCEL_URL`; set this variable once the production domain is stable. |
+| `GEMINI_API_KEY` | Yes | Google Gemini server-side API key. This is the preferred variable name used by the application. The legacy `GOOGLE_API_KEY` and `GOGOLE_API_KEY` names remain accepted only for compatibility. |
 | `GEMINI_MODEL` | Yes | Set to `gemini-3.5-flash-lite`. |
 | `E2B_API_KEY` | Yes | E2B server-side API key used to create and restore previews. |
 | `E2B_TEMPLATE` | Yes | Set to `minder-sandbox`. |
 | `INNGEST_EVENT_KEY` | Yes | Inngest event key for the selected environment. |
 | `INNGEST_SIGNING_KEY` | Yes | Inngest signing key used to verify calls to `/api/inngest`. |
 | `INNGEST_SERVE_ORIGIN` | Recommended | Set to the canonical production origin, for example `https://minder.example.com`, once the domain is live. |
+
+Select **Production**, **Preview**, and **Development** for every required variable above if you intend to use all three Vercel environments. At minimum, the three values that caused the reported build error must be set in the environment being deployed: `DATABASE_URL`, `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY`, and `CLERK_SECRET_KEY`. The build preflight now stops before Next.js prerendering and lists missing variable *names* without revealing any values.
 
 Set the Clerk production redirect URLs and allowed origins to include the Vercel production domain before testing sign-in. Configure a **separate database** for Vercel preview deployments if pull requests might include Prisma schema changes; this avoids preview builds affecting production data.[2]
 
