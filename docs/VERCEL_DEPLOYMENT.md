@@ -4,6 +4,8 @@ This repository is a **Next.js 15** application and can be deployed directly fro
 
 The repository also includes `.npmrc` with `legacy-peer-deps=true`. This preserves the dependency-resolution mode required by the current `openai` and `zod` peer dependency range during Vercel's clean `npm install`; it does **not** add or enable an OpenAI runtime integration.
 
+> **About `npm warn allow-scripts`:** npm currently prints this notice for dependency lifecycle scripts that have not been explicitly reviewed in the project's `allowScripts` field. In the current npm release, the field is advisory: scripts still run by default. It is **not** a failed build or a reason to approve every listed package. The Minder deployment already runs its own `postinstall` task, including `prisma generate`; investigate the first subsequent `Error:` or non-zero exit instead.[4]
+
 ## 1. Import the GitHub repository
 
 In Vercel, create a new project from the GitHub repository and select the **`Minder` branch** as the production branch. Vercel should detect Next.js automatically. Keep the default build command, which runs `npm run build` and therefore executes `prisma generate`, the repository's Gemini thought-signature compatibility patch through `postinstall`, and a secret-safe production environment preflight.
@@ -53,3 +55,4 @@ After Vercel reports a successful build, verify the following in order: the publ
 [1]: https://vercel.com/docs/frameworks/full-stack/nextjs "Next.js on Vercel"
 [2]: https://www.prisma.io/docs/orm/prisma-client/deployment/serverless/deploy-to-vercel "Prisma: Deploy to Vercel"
 [3]: https://www.inngest.com/docs/deploy/vercel "Inngest: Deploy to Vercel"
+[4]: https://docs.npmjs.com/cli/v11/commands/npm-approve-scripts/ "npm approve-scripts"
