@@ -4,7 +4,7 @@
   
   AI-powered Next.js application generator that transforms natural language prompts into production-ready code. From concept to deployment, skip the boilerplate and focus on what makes your project unique.
 
-  [Watch Demo 🚀](https://minder.app) | [X](https://x.com/BlackhorseTeck) | [LinkedIn](https://www.linkedin.com/company/bahia-llm-works)
+  [Watch Demo 🚀](https://minder-delta.vercel.app) | [X](https://x.com/BlackhorseTeck) | [LinkedIn](https://www.linkedin.com/company/bahia-llm-works)
 </div>
 
 
